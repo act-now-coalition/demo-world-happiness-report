@@ -1,6 +1,11 @@
 import { Grid, Typography } from "@mui/material";
 
 import { Region } from "@actnowcoalition/regions";
+import {
+  AutoWidth,
+  MetricLineThresholdChart,
+  MetricOverview,
+} from "@actnowcoalition/ui-components";
 
 import {
   BorderedPageSection,
@@ -10,6 +15,7 @@ import {
 } from "components/Containers";
 import { PageMetaTags } from "components/SocialMetaTags";
 import { Page } from "src/cms";
+import { MetricId } from "src/utils/metrics";
 
 export const Location: React.FC<{ region: Region; page: Page }> = ({
   region,
@@ -35,11 +41,18 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
         <BorderedPageSection>
           {/* Example of a responsive layout */}
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-              <Placeholder sx={{ minHeight: 180 }} />
+            <Grid item xs={12} md={3}>
+              <MetricOverview region={region} metric={MetricId.LIFE_LADDER} />
             </Grid>
             <Grid item xs={12} md>
-              <Placeholder sx={{ minHeight: 180 }} />
+              <AutoWidth>
+                <MetricLineThresholdChart
+                  region={region}
+                  metric={MetricId.LIFE_LADDER}
+                  height={250}
+                  width={0}
+                />
+              </AutoWidth>
             </Grid>
           </Grid>
           <Placeholder sx={{ mt: 3, minHeight: 180 }} />
