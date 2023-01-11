@@ -9,7 +9,7 @@ import type { Region } from "@actnowcoalition/regions";
  * Location pages defined in src/pages/us/[regionSlug]/index.tsx
  * Location URL is /us/<regionSlug>
  */
-const LOCATION_PAGE_PREFIX = "us";
+const LOCATION_PAGE_PREFIX = "country";
 
 /**
  * Gets the slug for a region, used with LOCATION_PAGE_PREFIX to generate the
