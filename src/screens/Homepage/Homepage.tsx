@@ -1,10 +1,15 @@
 import { Typography } from "@mui/material";
 
-import { RegionSearch } from "@actnowcoalition/ui-components";
+import {
+  AutoWidth,
+  MetricWorldMap,
+  RegionSearch,
+} from "@actnowcoalition/ui-components";
 
 import { PageContainer, PageSection, Placeholder } from "components/Containers";
 import { PageMetaTags } from "components/SocialMetaTags";
 import { Page, cms } from "src/cms";
+import { MetricId } from "src/utils/metrics";
 import { regions } from "src/utils/regions";
 
 /**
@@ -47,7 +52,20 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
         </PageSection>
         {/* Replace the placeholders with real content */}
         <PageSection>
-          <Placeholder />
+          <AutoWidth>
+            <MetricWorldMap
+              regionDB={regions}
+              metric={MetricId.LIFE_LADDER}
+              getTooltip={(regionId) => {
+                const region = regions.findByRegionId(regionId);
+                return region ? <>{region.shortName}</> : "";
+              }}
+              getRegionUrl={(regionId) => {
+                const region = regions.findByRegionId(regionId);
+                return region ? regions.getRegionUrl(region) : "/";
+              }}
+            />
+          </AutoWidth>
         </PageSection>
         <PageSection>
           <Placeholder />
