@@ -1,0 +1,10 @@
+{
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrder": [
+    "^react$",
+    "<THIRD_PARTY_MODULES>",
+    "^@actnowcoalition/",
+    "^\\.|^src|^components"
+  ]
+}
