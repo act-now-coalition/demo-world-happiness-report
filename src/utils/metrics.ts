@@ -140,6 +140,8 @@ export const metrics: MetricDefinition[] = [
   },
 ];
 
+export const ALL_METRICS = metrics.map((m) => m.id);
+
 export const categorySets = [
   {
     id: "happiness-levels",

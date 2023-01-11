@@ -1,15 +1,17 @@
-import { Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 
 import {
   AutoWidth,
+  MetricCompareTable,
   MetricWorldMap,
+  MultiRegionMultiMetricChart,
   RegionSearch,
 } from "@actnowcoalition/ui-components";
 
-import { PageContainer, PageSection, Placeholder } from "components/Containers";
+import { PageContainer, PageSection } from "components/Containers";
 import { PageMetaTags } from "components/SocialMetaTags";
 import { Page, cms } from "src/cms";
-import { MetricId } from "src/utils/metrics";
+import { ALL_METRICS, MetricId } from "src/utils/metrics";
 import { regions } from "src/utils/regions";
 
 /**
@@ -68,10 +70,30 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
           </AutoWidth>
         </PageSection>
         <PageSection>
-          <Placeholder />
+          <Typography variant="h2">Compare</Typography>
+          <Paper style={{ height: 500, overflow: "auto" }}>
+            <MetricCompareTable
+              regionDB={regions}
+              regions={regions.all}
+              metrics={ALL_METRICS}
+            />
+          </Paper>
         </PageSection>
         <PageSection>
-          <Placeholder />
+          <Typography variant="h2">Explore Countries</Typography>
+          <AutoWidth>
+            <MultiRegionMultiMetricChart
+              metrics={ALL_METRICS}
+              regions={regions.all}
+              initialMetric={MetricId.LIFE_LADDER}
+              initialRegions={[
+                regions.findByRegionIdStrict("AFG"),
+                regions.findByRegionIdStrict("CAN"),
+              ]}
+              height={600}
+              width={0}
+            />
+          </AutoWidth>
         </PageSection>
       </PageContainer>
     </>
