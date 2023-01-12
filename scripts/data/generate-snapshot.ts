@@ -7,7 +7,7 @@ import {
 } from "@actnowcoalition/metrics";
 
 import {
-  MetricId,
+  // MetricId,
   categorySets,
   dataProviders,
   metrics,
@@ -30,7 +30,9 @@ async function main() {
   const fetchedData: MultiRegionMultiMetricDataStore[] = [
     await metricCatalog.fetchDataForRegionsAndMetrics(
       [regions.findByRegionIdStrict("53")],
-      [MetricId.PI],
+      [
+        // MetricId.PI
+      ],
       /*includeTimeseries=*/ false
     ),
     // await metricCatalog.fetchDataForRegionsAndMetrics(
