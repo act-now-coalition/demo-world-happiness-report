@@ -19,20 +19,20 @@
       "microcopy": [
         {
           "microcopyId": "title",
-          "microcopyContent": "Act Now Tracker"
+          "microcopyContent": "World Happiness"
         },
         {
           "microcopyId": "heading.title",
-          "microcopyContent": "Risk Levels"
+          "microcopyContent": "Happiness Score"
         },
         {
           "microcopyId": "heading.intro",
-          "microcopyContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fermentum leo vel orci porta non."
+          "microcopyContent": "Data from the World Happiness Report 2022."
         }
       ],
       "metaTags": {
-        "title": "Homepage title",
-        "description": "Homepage description",
+        "title": "World Happiness Report",
+        "description": "World Happiness Report Dashboard",
         "socialImg": "https://picsum.photos/200/300"
       }
     }
