@@ -38,9 +38,6 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
           <Typography variant="h1" align="center">
             {microcopy.get("title")}
           </Typography>
-          <Typography variant="h2" align="center">
-            {microcopy.get("heading.title")}
-          </Typography>
           <Typography
             variant="paragraphLarge"
             align="center"
@@ -50,7 +47,11 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
           </Typography>
         </PageSection>
         <PageSection>
-          <RegionSearch options={regions.all} regionDB={regions} />
+          <RegionSearch
+            options={regions.all}
+            regionDB={regions}
+            placeholder="Search countries"
+          />
         </PageSection>
         {/* Replace the placeholders with real content */}
         <PageSection>
