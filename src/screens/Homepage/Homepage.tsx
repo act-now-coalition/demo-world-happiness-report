@@ -1,4 +1,5 @@
-import { Paper, Typography } from "@mui/material";
+import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
+import { Button, Grid, Paper, Typography } from "@mui/material";
 
 import {
   AutoWidth,
@@ -35,23 +36,35 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
       />
       <PageContainer maxWidth="md">
         <PageSection>
-          <Typography variant="h1" align="center">
-            {microcopy.get("title")}
-          </Typography>
+          <Typography variant="h1">{microcopy.get("title")}</Typography>
           <Typography
             variant="paragraphLarge"
-            align="center"
-            sx={{ display: "block", my: 2 }}
+            sx={{ display: "block", my: 2, maxWidth: "sm" }}
           >
             {microcopy.get("heading.intro")}
           </Typography>
-        </PageSection>
-        <PageSection>
-          <RegionSearch
-            options={regions.all}
-            regionDB={regions}
-            placeholder="Search countries"
-          />
+          <Grid
+            container
+            spacing={2}
+            sx={{ mt: { md: 6, xs: 4 }, mb: { md: 16, xs: 8 } }}
+          >
+            <Grid item xs={12} md={6}>
+              <RegionSearch
+                options={regions.all}
+                regionDB={regions}
+                inputLabel="Search for your country..."
+              />
+            </Grid>
+            <Grid item xs={12} md>
+              <Button
+                href="https://happiness-report.s3.amazonaws.com/2022/WHR+22.pdf"
+                variant="text"
+                endIcon={<CloudDownloadIcon />}
+              >
+                Download full report
+              </Button>
+            </Grid>
+          </Grid>
         </PageSection>
         {/* Replace the placeholders with real content */}
         <PageSection>
