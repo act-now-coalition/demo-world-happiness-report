@@ -29,11 +29,13 @@ export const BorderedPageSection = styled(PageSection)`
  * vertical margins.
  */
 export const PageContainer = styled(Container)`
-  margin-top: ${({ theme }) => theme.spacing(5)};
+  padding-top: ${({ theme }) => theme.spacing(5)};
+  margin-top: 0;
   margin-bottom: ${({ theme }) => theme.spacing(5)};
 
   ${({ theme }) => theme.breakpoints.up("md")} {
-    margin-top: ${({ theme }) => theme.spacing(7)};
+    padding-top: ${({ theme }) => theme.spacing(7)};
+    margin-top: 0;
     margin-bottom: ${({ theme }) => theme.spacing(7)};
   }
 `;
