@@ -36,7 +36,7 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
       />
       <PageContainer maxWidth="md">
         <PageSection>
-          <Typography variant="h1" sx={{ mt: { md: 8, xs: 3 } }}>
+          <Typography variant="h1" sx={{ mt: { md: 8, xs: 2 } }}>
             {microcopy.get("title")}
           </Typography>
           <Typography
