@@ -56,18 +56,7 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
         {/* Replace the placeholders with real content */}
         <PageSection>
           <AutoWidth>
-            <MetricWorldMap
-              regionDB={regions}
-              metric={MetricId.LIFE_LADDER}
-              getTooltip={(regionId) => {
-                const region = regions.findByRegionId(regionId);
-                return region ? <>{region.shortName}</> : "";
-              }}
-              getRegionUrl={(regionId) => {
-                const region = regions.findByRegionId(regionId);
-                return region ? regions.getRegionUrl(region) : "/";
-              }}
-            />
+            <MetricWorldMap regionDB={regions} metric={MetricId.LIFE_LADDER} />
           </AutoWidth>
         </PageSection>
         <PageSection>
