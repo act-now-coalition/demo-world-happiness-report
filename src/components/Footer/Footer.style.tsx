@@ -9,4 +9,5 @@ export const StyledFooter = styled("footer")`
 
 export const StyledLink = styled(Link)`
   color: inherit;
+  text-decoration: underline;
 `;
