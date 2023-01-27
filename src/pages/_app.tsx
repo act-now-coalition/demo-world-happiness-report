@@ -7,8 +7,9 @@ import Head from "next/head";
 import { MetricCatalogProvider } from "@actnowcoalition/ui-components";
 
 import AppBar from "components/AppBar";
+import { BackgroundContainer } from "components/Containers";
 import Footer from "components/Footer";
-import { globalStyles, styled } from "src/styles";
+import { globalStyles } from "src/styles";
 import createEmotionCache from "src/styles/createEmotionCache";
 import theme from "src/styles/theme";
 import { AnalyticsSetup } from "src/utils/analytics";
@@ -20,15 +21,6 @@ const clientSideEmotionCache = createEmotionCache();
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
-
-const BackgroundContainer = styled("div")`
-  background: linear-gradient(
-    to bottom,
-    hsl(315deg 56% 46%) 0,
-    hsl(315deg 56% 46%) 599px,
-    #fff 600px
-  );
-`;
 
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;

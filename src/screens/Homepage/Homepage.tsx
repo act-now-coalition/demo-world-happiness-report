@@ -72,8 +72,9 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
             </Grid>
           </Grid>
         </PageSection>
-        {/* Replace the placeholders with real content */}
-        <PageSection>
+        <PageSection
+          sx={{ backgroundColor: "#fff", padding: 5, borderRadius: 2 }}
+        >
           <AutoWidth>
             <MetricWorldMap regionDB={regions} metric={MetricId.LIFE_LADDER} />
           </AutoWidth>
