@@ -8,13 +8,9 @@ import { styled } from "../../styles";
 export const BackgroundContainer = styled("div")`
   background: linear-gradient(
     to bottom,
-    #91368b 0px,
-    #9c3590 100px,
-    #a63695 150px,
-    #ac3594 200px,
-    #b73496 250px,
+    #ac3594 0,
+    #b73496 200px,
     #bd3296 300px,
-    #c53093 350px,
     #d12e93 400px,
     #d82c90 500px,
     #e0298b 599px,
