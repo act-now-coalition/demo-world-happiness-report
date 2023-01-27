@@ -35,10 +35,14 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
       />
       <PageContainer maxWidth="md">
         <PageSection>
-          <Typography variant="h1">{region.shortName}</Typography>
-          <Typography>{microcopy.get("heading.updated")}</Typography>
+          <Typography variant="h1" color="white">
+            {region.shortName}
+          </Typography>
+          <Typography color="white">
+            {microcopy.get("heading.updated")}
+          </Typography>
         </PageSection>
-        <BorderedPageSection>
+        <BorderedPageSection sx={{ backgroundColor: "white" }}>
           {/* Example of a responsive layout */}
           <Grid container spacing={3}>
             <Grid item xs={12} md={3}>
