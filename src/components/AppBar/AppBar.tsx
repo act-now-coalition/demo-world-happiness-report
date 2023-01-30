@@ -17,12 +17,7 @@ const AppBar: React.FC<MuiAppBarProps> = (props) => {
     <MuiAppBar position="sticky" component="nav" {...props}>
       <Toolbar>
         <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 2,
-            width: "100%",
-          }}
+          sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}
         >
           <Link href="/" sx={{ display: "block", flexGrow: 1 }}>
             <img
