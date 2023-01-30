@@ -19,7 +19,7 @@
       "microcopy": [
         {
           "microcopyId": "title",
-          "microcopyContent": "World Happiness"
+          "microcopyContent": "World Happiness Report 2022"
         },
         {
           "microcopyId": "heading.title",
@@ -27,12 +27,12 @@
         },
         {
           "microcopyId": "heading.intro",
-          "microcopyContent": "Data from the World Happiness Report 2022."
+          "microcopyContent": "This year marks the 10th anniversary of the World Happiness Report, which uses global survey data to report how people evaluate their own lives in more than 150 countries worldwide."
         }
       ],
       "metaTags": {
-        "title": "World Happiness Report",
-        "description": "World Happiness Report Dashboard",
+        "title": "World Happiness Report 2022",
+        "description": "This year marks the 10th anniversary of the World Happiness Report, which uses global survey data to report how people evaluate their own lives in more than 150 countries worldwide.",
         "socialImg": "https://picsum.photos/200/300"
       }
     }
