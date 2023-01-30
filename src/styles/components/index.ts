@@ -11,7 +11,6 @@ const components: ThemeOptions["components"] = {
   MuiAppBar: {
     styleOverrides: {
       root: ({ theme }) => ({
-        boxShadow: "none",
         backgroundColor: theme.palette.common.white,
         color: theme.palette.common.black,
       }),
