@@ -17,6 +17,7 @@ import {
   AppBar as MuiAppBar,
   AppBarProps as MuiAppBarProps,
   Toolbar,
+  useTheme,
 } from "@mui/material";
 
 interface AppBarItem {
@@ -42,6 +43,8 @@ const menuItems: AppBarItem[] = [
 ];
 
 const AppBar: React.FC<MuiAppBarProps> = (props) => {
+  const theme = useTheme();
+
   const [mobileOpen, setMobileOpen] = useState(false);
   const openDrawer = () => setMobileOpen(true);
   const closeDrawer = () => setMobileOpen(false);
@@ -56,10 +59,10 @@ const AppBar: React.FC<MuiAppBarProps> = (props) => {
   // padding set in src/styles/globalStyles.ts to make sure that anchor links
   // are still scrolled into view.
   return (
-    <MuiAppBar position="sticky" component="nav" elevation={1} {...props}>
+    <MuiAppBar position="sticky" component="nav" {...props}>
       <Toolbar>
         <Box
-          sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}
+          sx={{ display: "flex", alignItems: "center", gap: 1, width: "100%" }}
         >
           {logo}
           {menuItems.map((item, itemIndex) => (
@@ -94,7 +97,9 @@ const AppBar: React.FC<MuiAppBarProps> = (props) => {
         onClose={closeDrawer}
       >
         <List sx={{ py: 0 }}>
-          <ListItem sx={{ minHeight: 56 }}>{logo}</ListItem>
+          <ListItem sx={{ minHeight: theme.mixins.toolbar.minHeight }}>
+            {logo}
+          </ListItem>
           <Divider />
           {menuItems.map((item, itemIndex) => (
             <ListItem key={`item-${itemIndex}`} sx={{ my: 1 }} disablePadding>
