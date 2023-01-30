@@ -19,7 +19,7 @@ const Footer = () => {
   return (
     <StyledFooter>
       <Stack spacing={3} maxWidth="md" margin="auto">
-        <Box p={1}>
+        <Box>
           <img
             width="120px"
             src="/logo.png"
