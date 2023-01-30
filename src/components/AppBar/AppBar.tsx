@@ -1,5 +1,9 @@
+import AssessmentIcon from "@mui/icons-material/Assessment";
+import InfoIcon from "@mui/icons-material/Info";
 import {
   Box,
+  Button,
+  Link,
   AppBar as MuiAppBar,
   AppBarProps as MuiAppBarProps,
   Toolbar,
@@ -11,8 +15,34 @@ const AppBar: React.FC<MuiAppBarProps> = (props) => {
   // are still scrolled into view.
   return (
     <MuiAppBar position="sticky" {...props}>
-      <Toolbar disableGutters>
-        <Box p={2}>Logo</Box>
+      <Toolbar>
+        <Box
+          sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}
+        >
+          <Link href="/" sx={{ display: "block", flexGrow: 1 }}>
+            <img
+              src="/logo-color.svg"
+              height={32}
+              alt="World Happiness Report"
+            />
+          </Link>
+          <Button
+            href="https://worldhappiness.report/faq/"
+            variant="text"
+            size="small"
+            endIcon={<InfoIcon />}
+          >
+            FAQs
+          </Button>
+          <Button
+            href="https://worldhappiness.report/ed/2022/"
+            variant="outlined"
+            size="small"
+            endIcon={<AssessmentIcon />}
+          >
+            See Full Reports
+          </Button>
+        </Box>
       </Toolbar>
     </MuiAppBar>
   );

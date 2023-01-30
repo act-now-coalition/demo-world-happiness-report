@@ -10,9 +10,11 @@ import { Link } from "./Link";
 const components: ThemeOptions["components"] = {
   MuiAppBar: {
     styleOverrides: {
-      root: {
+      root: ({ theme }) => ({
         boxShadow: "none",
-      },
+        backgroundColor: theme.palette.common.white,
+        color: theme.palette.common.black,
+      }),
     },
   },
   // The custom Link component uses Next.js Link, which includes several
