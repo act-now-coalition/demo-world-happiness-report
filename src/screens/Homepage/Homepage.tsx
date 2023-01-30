@@ -36,12 +36,15 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
       />
       <PageContainer maxWidth="md">
         <PageSection>
-          <Typography variant="h1" sx={{ mt: { md: 8, xs: 2 } }}>
+          <Typography
+            variant="h1"
+            sx={{ mt: { md: 8, xs: 2 }, color: "white" }}
+          >
             {microcopy.get("title")}
           </Typography>
           <Typography
             variant="paragraphLarge"
-            sx={{ display: "block", my: 2, maxWidth: "sm" }}
+            sx={{ display: "block", my: 2, maxWidth: "sm", color: "white" }}
           >
             {microcopy.get("heading.intro")}
           </Typography>
@@ -61,6 +64,7 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
               <Button
                 href="https://happiness-report.s3.amazonaws.com/2022/WHR+22.pdf"
                 variant="text"
+                sx={{ color: "white" }}
                 endIcon={<CloudDownloadIcon />}
               >
                 Download full report
@@ -68,8 +72,9 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
             </Grid>
           </Grid>
         </PageSection>
-        {/* Replace the placeholders with real content */}
-        <PageSection>
+        <PageSection
+          sx={{ backgroundColor: "#fff", padding: 5, borderRadius: 2 }}
+        >
           <AutoWidth>
             <MetricWorldMap regionDB={regions} metric={MetricId.LIFE_LADDER} />
           </AutoWidth>

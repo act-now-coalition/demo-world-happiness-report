@@ -3,6 +3,22 @@ import { Box, Container } from "@mui/material";
 import { styled } from "../../styles";
 
 /**
+ * Background with a color gradient.
+ */
+export const BackgroundContainer = styled("div")`
+  background: linear-gradient(
+    to bottom,
+    #ac3594 0,
+    #b73496 200px,
+    #bd3296 300px,
+    #d12e93 400px,
+    #d82c90 500px,
+    #e0298b 599px,
+    #ffffff 600px
+  );
+`;
+
+/**
  * Simple container with default margins to separate
  * sections on a page.
  */

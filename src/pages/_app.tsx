@@ -7,6 +7,7 @@ import Head from "next/head";
 import { MetricCatalogProvider } from "@actnowcoalition/ui-components";
 
 import AppBar from "components/AppBar";
+import { BackgroundContainer } from "components/Containers";
 import Footer from "components/Footer";
 import { globalStyles } from "src/styles";
 import createEmotionCache from "src/styles/createEmotionCache";
@@ -36,7 +37,9 @@ export default function MyApp(props: MyAppProps) {
         <CssBaseline />
         <MetricCatalogProvider metricCatalog={metricCatalog}>
           <AppBar />
-          <Component {...pageProps} />
+          <BackgroundContainer>
+            <Component {...pageProps} />
+          </BackgroundContainer>
           <Footer />
         </MetricCatalogProvider>
       </ThemeProvider>
