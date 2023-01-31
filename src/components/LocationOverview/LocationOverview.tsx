@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, useTheme } from "@mui/material";
+import { Box, Divider, Grid, Typography, useTheme } from "@mui/material";
 
 import { Region } from "@actnowcoalition/regions";
 import {
@@ -8,15 +8,15 @@ import {
 
 import { MetricId, metrics } from "src/utils/metrics";
 
-const LocationOverview: React.FC<{ region: Region }> = ({ region }) => {
+export interface LocationOverviewProps {
+  region: Region;
+}
+
+const LocationOverview = ({ region }: LocationOverviewProps) => {
   const theme = useTheme();
   return (
-    <Box display="flex">
-      <Box
-        flex={1}
-        pr={8}
-        borderRight={`1px solid ${theme.palette.chart.axis}`}
-      >
+    <Box display="flex" flexDirection={{ xs: "column", sm: "row" }}>
+      <Box flex={1}>
         <MetricScoreOverview region={region} metric={MetricId.LIFE_LADDER} />
         <Box mt={4}>
           <Typography variant="paragraphLarge">
@@ -33,7 +33,15 @@ const LocationOverview: React.FC<{ region: Region }> = ({ region }) => {
           </Typography>
         </Box>
       </Box>
-      <Box flex={1} pl={8}>
+      <Divider
+        variant="middle"
+        sx={{
+          borderWidth: "1px",
+          marginX: { xs: 0, sm: theme.spacing(8) },
+          marginY: { xs: theme.spacing(3), sm: 0 },
+        }}
+      />
+      <Box flex={1}>
         <Box mb={3}>
           <Typography variant="paragraphSmall">
             Factors and their values
