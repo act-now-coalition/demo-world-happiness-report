@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Grid, Stack, Typography } from "@mui/material";
 
 import { Region } from "@actnowcoalition/regions";
 import {
@@ -68,24 +68,24 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
           <Placeholder sx={{ mt: 3, minHeight: 180 }} />
         </BorderedPageSection>
         <PageSection>
-          <Box mb={2}>
+          <Stack spacing={2}>
             <Typography variant="h2">Explore</Typography>
-          </Box>
-          <AutoWidth>
-            <MultiRegionMultiMetricChart
-              metrics={ALL_METRICS}
-              regions={regions.all}
-              initialMetric={MetricId.LIFE_LADDER}
-              initialRegions={[
-                region,
-                regions.findByRegionIdStrict("LBN"),
-                regions.findByRegionIdStrict("NER"),
-                regions.findByRegionIdStrict("FIN"),
-              ]}
-              height={440}
-              width={0}
-            />
-          </AutoWidth>
+            <AutoWidth>
+              <MultiRegionMultiMetricChart
+                metrics={ALL_METRICS}
+                regions={regions.all}
+                initialMetric={MetricId.LIFE_LADDER}
+                initialRegions={[
+                  region,
+                  regions.findByRegionIdStrict("LBN"),
+                  regions.findByRegionIdStrict("NER"),
+                  regions.findByRegionIdStrict("FIN"),
+                ]}
+                height={440}
+                width={0}
+              />
+            </AutoWidth>
+          </Stack>
         </PageSection>
         {/* Replace the placeholder with real content */}
         <PageSection>
