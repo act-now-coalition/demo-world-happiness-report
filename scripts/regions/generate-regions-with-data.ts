@@ -3,7 +3,7 @@ import fs from "fs";
 import { chain } from "lodash";
 import * as path from "path";
 
-import { parseCsv } from "@actnowcoalition/metrics";
+import { parseCsv } from "@actnowcoalition/actnow.js";
 
 const publicDataDir = path.join(__dirname, "../../public/data");
 
