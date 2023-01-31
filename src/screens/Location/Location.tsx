@@ -1,10 +1,11 @@
-import { Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 
 import { Region } from "@actnowcoalition/regions";
 import {
   AutoWidth,
   MetricLineThresholdChart,
   MetricOverview,
+  MultiRegionMultiMetricChart,
 } from "@actnowcoalition/ui-components";
 
 import {
@@ -16,7 +17,8 @@ import {
 import LocationOverview from "components/LocationOverview";
 import { PageMetaTags } from "components/SocialMetaTags";
 import { Page } from "src/cms";
-import { MetricId } from "src/utils/metrics";
+import { ALL_METRICS, MetricId } from "src/utils/metrics";
+import { regions } from "src/utils/regions";
 
 export const Location: React.FC<{ region: Region; page: Page }> = ({
   region,
@@ -65,10 +67,27 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
           </Grid>
           <Placeholder sx={{ mt: 3, minHeight: 180 }} />
         </BorderedPageSection>
-        {/* Replace the placeholder with real content */}
         <PageSection>
-          <Placeholder />
+          <Box mb={2}>
+            <Typography variant="h2">Explore</Typography>
+          </Box>
+          <AutoWidth>
+            <MultiRegionMultiMetricChart
+              metrics={ALL_METRICS}
+              regions={regions.all}
+              initialMetric={MetricId.LIFE_LADDER}
+              initialRegions={[
+                region,
+                regions.findByRegionIdStrict("LBN"),
+                regions.findByRegionIdStrict("NER"),
+                regions.findByRegionIdStrict("FIN"),
+              ]}
+              height={440}
+              width={0}
+            />
+          </AutoWidth>
         </PageSection>
+        {/* Replace the placeholder with real content */}
         <PageSection>
           <Placeholder />
         </PageSection>
