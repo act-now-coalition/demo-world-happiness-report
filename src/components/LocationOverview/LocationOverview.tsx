@@ -1,10 +1,10 @@
 import { Box, Divider, Grid, Typography, useTheme } from "@mui/material";
 
-import { Region } from "@actnowcoalition/regions";
 import {
   MetricScoreOverview,
   MetricValue,
-} from "@actnowcoalition/ui-components";
+  Region,
+} from "@actnowcoalition/actnow.js";
 
 import { MetricId, metrics } from "src/utils/metrics";
 

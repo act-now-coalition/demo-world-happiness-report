@@ -1,4 +1,4 @@
-import { RegionDB, nations } from "@actnowcoalition/regions";
+import { RegionDB, nations } from "@actnowcoalition/actnow.js";
 
 import { getRegionRelativeUrl } from "./routing";
 
