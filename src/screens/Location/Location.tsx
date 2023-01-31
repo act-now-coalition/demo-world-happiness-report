@@ -1,12 +1,12 @@
 import { Grid, Stack, Typography } from "@mui/material";
 
-import { Region } from "@actnowcoalition/regions";
 import {
   AutoWidth,
   MetricLineThresholdChart,
   MetricOverview,
   MultiRegionMultiMetricChart,
-} from "@actnowcoalition/ui-components";
+  Region,
+} from "@actnowcoalition/actnow.js";
 
 import {
   BorderedPageSection,
