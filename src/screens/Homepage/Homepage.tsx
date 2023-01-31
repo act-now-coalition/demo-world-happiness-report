@@ -1,5 +1,18 @@
+import React, { useState } from "react";
+
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-import { Button, Grid, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Paper,
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography,
+} from "@mui/material";
+import sortBy from "lodash/sortBy";
+import take from "lodash/take";
+import takeRight from "lodash/takeRight";
 
 import {
   AutoWidth,
@@ -7,6 +20,7 @@ import {
   MetricWorldMap,
   MultiRegionMultiMetricChart,
   RegionSearch,
+  useDataForRegionsAndMetrics,
 } from "@actnowcoalition/actnow.js";
 
 import { PageContainer, PageSection } from "components/Containers";
@@ -91,6 +105,7 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
         </PageSection>
         <PageSection>
           <Typography variant="h2">Explore Countries</Typography>
+          <Trends />
           <AutoWidth>
             <MultiRegionMultiMetricChart
               metrics={ALL_METRICS}
@@ -111,3 +126,70 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
 };
 
 export default Homepage;
+
+const Trends = () => {
+  const [selectedOption, setSelectedOption] = useState("most-happy");
+
+  const onSelectOption = (
+    event: React.MouseEvent,
+    newSelectedOption: string
+  ) => {
+    if (newSelectedOption !== null) {
+      setSelectedOption(newSelectedOption);
+    }
+  };
+
+  const { error, data } = useDataForRegionsAndMetrics(regions.all, [
+    MetricId.LIFE_LADDER,
+  ]);
+
+  if (error || !data) {
+    return <Box>...</Box>;
+  }
+
+  // Sort countries by happiness score, low to high
+  const countriesByHappiness = sortBy(regions.all, (region) => {
+    const d = data.metricData(region, MetricId.LIFE_LADDER);
+    return d.currentValue as number;
+  });
+
+  const mostHappy = takeRight(countriesByHappiness, 10);
+  const lessHappy = take(countriesByHappiness, 10);
+
+  const initialRegions =
+    selectedOption === "most-happy"
+      ? mostHappy
+      : selectedOption === "less-happy"
+      ? lessHappy
+      : [
+          regions.findByRegionIdStrict("AFG"),
+          regions.findByRegionIdStrict("CAN"),
+        ];
+
+  return (
+    <Box>
+      <ToggleButtonGroup
+        value={selectedOption}
+        exclusive
+        onChange={onSelectOption}
+      >
+        <ToggleButton value="most-happy">Most Happy</ToggleButton>
+        <ToggleButton value="less-happy">Less Happy</ToggleButton>
+        <ToggleButton value="custom">Custom</ToggleButton>
+      </ToggleButtonGroup>
+
+      <AutoWidth>
+        <MultiRegionMultiMetricChart
+          metrics={ALL_METRICS}
+          regions={regions.all}
+          initialMetric={MetricId.LIFE_LADDER}
+          initialRegions={initialRegions}
+          height={600}
+          width={0}
+        />
+      </AutoWidth>
+    </Box>
+  );
+
+  return <div>{lessHappy.map((item) => `${item.regionId} `)}</div>;
+};
