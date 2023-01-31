@@ -7,6 +7,13 @@ const storybookConfig = {
   ],
   staticDirs: ["../public"],
   framework: "@storybook/react",
+  refs: {
+    "act-now-packages": {
+      title: "Act Now Components",
+      url: "https://act-now-packages.web.app/storybook",
+      expanded: true,
+    },
+  },
 };
 
 export default storybookConfig;
