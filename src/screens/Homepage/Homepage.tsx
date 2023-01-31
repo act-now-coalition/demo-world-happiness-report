@@ -7,7 +7,7 @@ import {
   MetricWorldMap,
   MultiRegionMultiMetricChart,
   RegionSearch,
-} from "@actnowcoalition/ui-components";
+} from "@actnowcoalition/actnow.js";
 
 import { PageContainer, PageSection } from "components/Containers";
 import { PageMetaTags } from "components/SocialMetaTags";

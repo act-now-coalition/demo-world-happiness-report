@@ -1,5 +1,8 @@
-import { MetricCatalog, MetricDefinition } from "@actnowcoalition/metrics";
-import { CsvDataProvider } from "@actnowcoalition/metrics";
+import {
+  CsvDataProvider,
+  MetricCatalog,
+  MetricDefinition,
+} from "@actnowcoalition/actnow.js";
 
 import DataSnapshotJSON from "../assets/data/data-snapshot.json";
 import { regions } from "./regions";
