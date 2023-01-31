@@ -13,6 +13,7 @@ import {
   PageSection,
   Placeholder,
 } from "components/Containers";
+import LocationOverview from "components/LocationOverview";
 import { PageMetaTags } from "components/SocialMetaTags";
 import { Page } from "src/cms";
 import { MetricId } from "src/utils/metrics";
@@ -42,6 +43,9 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
             {microcopy.get("heading.updated")}
           </Typography>
         </PageSection>
+        <BorderedPageSection sx={{ backgroundColor: "white" }}>
+          <LocationOverview region={region} />
+        </BorderedPageSection>
         <BorderedPageSection sx={{ backgroundColor: "white" }}>
           {/* Example of a responsive layout */}
           <Grid container spacing={3}>
