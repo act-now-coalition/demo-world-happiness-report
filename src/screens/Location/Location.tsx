@@ -1,4 +1,5 @@
-import { Grid, Stack, Typography } from "@mui/material";
+import PeopleIcon from "@mui/icons-material/People";
+import { Box, Button, Grid, Stack, Typography, useTheme } from "@mui/material";
 
 import {
   AutoWidth,
@@ -25,6 +26,7 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
   page,
 }) => {
   const { microcopy, metaTags } = page;
+  const theme = useTheme();
   return (
     <>
       <PageMetaTags
@@ -38,12 +40,40 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
       />
       <PageContainer maxWidth="md">
         <PageSection>
-          <Typography variant="h1" color="white">
-            {region.shortName}
-          </Typography>
-          <Typography color="white">
-            {microcopy.get("heading.updated")}
-          </Typography>
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            justifyContent="space-between"
+            spacing={3}
+          >
+            <Stack>
+              <Typography variant="h1" color="white">
+                {region.shortName}
+              </Typography>
+              <Typography color="white">
+                {microcopy.get("heading.updated")}
+              </Typography>
+            </Stack>
+            <Box
+              display="flex"
+              justifyContent={{ sm: "flex-end" }}
+              alignItems="center"
+            >
+              <Button
+                variant="outlined"
+                size="large"
+                endIcon={<PeopleIcon />}
+                sx={{
+                  color: theme.palette.common.white,
+                  borderColor: "#F2F3F440",
+                  "&:hover": {
+                    borderColor: "#F2F3F440",
+                  },
+                }}
+              >
+                Share
+              </Button>
+            </Box>
+          </Stack>
         </PageSection>
         <BorderedPageSection sx={{ backgroundColor: "white" }}>
           <LocationOverview region={region} />
