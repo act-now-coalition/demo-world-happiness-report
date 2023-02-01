@@ -58,7 +58,7 @@ export const Trends = () => {
   ];
 
   const timePeriods = [
-    createTimePeriodOption(3, TimeUnit.YEARS),
+    createTimePeriodOption(4, TimeUnit.YEARS),
     createTimePeriodOption(6, TimeUnit.YEARS),
   ];
 
