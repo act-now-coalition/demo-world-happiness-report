@@ -3,10 +3,16 @@ import { Box, Button, Grid, Stack, Typography, useTheme } from "@mui/material";
 
 import {
   AutoWidth,
+  ColumnHeader,
+  CompareTable,
   MetricLineThresholdChart,
   MetricOverview,
   MultiRegionMultiMetricChart,
   Region,
+  TableCell,
+  TableContainer,
+  compare,
+  formatInteger,
 } from "@actnowcoalition/actnow.js";
 
 import {
@@ -112,13 +118,68 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
             </AutoWidth>
           </Stack>
         </PageSection>
+        <PageSection>
+          <TableContainer sx={{ maxWidth: 700, height: 600 }}>
+            <CompareTable
+              rows={regions.all
+                .sort((a, b) => compare(a.population, b.population))
+                .map((region) => ({ region, rowId: region.regionId }))}
+              columns={[
+                {
+                  columnId: "name",
+                  name: "Location",
+                  renderHeader: ({ column }) => (
+                    <ColumnHeader
+                      stickyColumn
+                      stickyRow
+                      label={column.name}
+                      align="left"
+                      sx={{ minWidth: 200 }}
+                    />
+                  ),
+                  renderCell: ({ row }) => (
+                    <TableCell stickyColumn>{row.region.shortName}</TableCell>
+                  ),
+                  sorterAsc: (rowA, rowB) =>
+                    compare(rowA.region.shortName, rowB.region.shortName),
+                },
+                {
+                  columnId: "fips",
+                  name: "FIPS Code",
+                  renderHeader: () => (
+                    <ColumnHeader label="FIPS" align="right" />
+                  ),
+                  renderCell: ({ row }) => (
+                    <TableCell align="right">
+                      <Typography variant="dataTabular">
+                        {row.region.regionId}
+                      </Typography>
+                    </TableCell>
+                  ),
+                  sorterAsc: (rowA, rowB) =>
+                    compare(rowA.region.regionId, rowB.region.regionId),
+                },
+                {
+                  columnId: "population",
+                  name: "Population",
+                  renderHeader: ({ column }) => (
+                    <ColumnHeader label={column.name} align="right" />
+                  ),
+                  renderCell: ({ row }) => (
+                    <TableCell align="right">
+                      <Typography variant="dataTabular">
+                        {formatInteger(row.region.population)}
+                      </Typography>
+                    </TableCell>
+                  ),
+                  sorterAsc: (rowA, rowB) =>
+                    compare(rowA.region.population, rowB.region.population),
+                },
+              ]}
+            />
+          </TableContainer>
+        </PageSection>
         {/* Replace the placeholder with real content */}
-        <PageSection>
-          <Placeholder />
-        </PageSection>
-        <PageSection>
-          <Placeholder />
-        </PageSection>
         <PageSection>
           <Placeholder />
         </PageSection>
