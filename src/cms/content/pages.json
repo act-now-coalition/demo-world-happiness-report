@@ -31,7 +31,7 @@
         },
         {
           "microcopyId": "data.source.tooltip",
-          "microcopyContent": "About this data [PLACEHOLDER]"
+          "microcopyContent": "Data from the World Happiness Report and Gallup World Poll data. Helliwell, J. F., Layard, R., Sachs, J. D., De Neve, J.-E., Aknin, L. B., & Wang, S. (Eds.). (2022). World Happiness Report 2022. New York: Sustainable Development Solutions Network."
         },
         {
           "microcopyId": "heading.intro",

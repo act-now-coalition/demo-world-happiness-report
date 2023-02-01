@@ -93,7 +93,9 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
             spacing={2}
           >
             <Box>
-              <InfoTooltip title={microcopy.get("data.source.tooltip")}>
+              <InfoTooltip
+                title={<span>{microcopy.get("data.source.tooltip")}</span>}
+              >
                 <Typography variant="paragraphSmall">
                   {microcopy.get("data.source.text")}
                 </Typography>
