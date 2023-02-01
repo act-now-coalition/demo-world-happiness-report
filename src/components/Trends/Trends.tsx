@@ -10,6 +10,8 @@ import takeRight from "lodash/takeRight";
 import {
   AutoWidth,
   MultiRegionMultiMetricChart,
+  TimeUnit,
+  createTimePeriodOption,
   useDataForRegionsAndMetrics,
 } from "@actnowcoalition/actnow.js";
 
@@ -55,6 +57,11 @@ export const Trends = () => {
     },
   ];
 
+  const timePeriods = [
+    createTimePeriodOption(3, TimeUnit.YEARS),
+    createTimePeriodOption(6, TimeUnit.YEARS),
+  ];
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -78,6 +85,7 @@ export const Trends = () => {
                 <MultiRegionMultiMetricChart
                   metrics={ALL_METRICS}
                   regions={regions.all}
+                  timePeriods={timePeriods}
                   initialMetric={MetricId.LIFE_LADDER}
                   initialRegions={option.countries}
                   height={600}
