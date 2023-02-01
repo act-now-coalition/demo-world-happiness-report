@@ -3,7 +3,15 @@ import React, { useState } from "react";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import { Box, Button, Chip, Grid, Paper, Typography } from "@mui/material";
+import {
+  Button,
+  Chip,
+  Grid,
+  Paper,
+  Skeleton,
+  Stack,
+  Typography,
+} from "@mui/material";
 import sortBy from "lodash/sortBy";
 import take from "lodash/take";
 import takeRight from "lodash/takeRight";
@@ -98,21 +106,10 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
           </Paper>
         </PageSection>
         <PageSection>
-          <Typography variant="h2">Explore Countries</Typography>
+          <Typography variant="h2" sx={{ mb: 3 }}>
+            Explore Countries
+          </Typography>
           <Trends />
-          <AutoWidth>
-            <MultiRegionMultiMetricChart
-              metrics={ALL_METRICS}
-              regions={regions.all}
-              initialMetric={MetricId.LIFE_LADDER}
-              initialRegions={[
-                regions.findByRegionIdStrict("AFG"),
-                regions.findByRegionIdStrict("CAN"),
-              ]}
-              height={600}
-              width={0}
-            />
-          </AutoWidth>
         </PageSection>
       </PageContainer>
     </>
@@ -121,15 +118,22 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
 
 export default Homepage;
 
+enum CountryGroup {
+  MOST_HAPPY = "MOST_HAPPY",
+  LEAST_HAPPY = "LEAST_HAPPY",
+}
+
 const Trends = () => {
-  const [selectedOption, setSelectedOption] = useState("most-happy");
+  const [selectedOption, setSelectedOption] = useState<CountryGroup>(
+    CountryGroup.MOST_HAPPY
+  );
 
   const { error, data } = useDataForRegionsAndMetrics(regions.all, [
     MetricId.LIFE_LADDER,
   ]);
 
   if (error || !data) {
-    return <Box>...</Box>;
+    return <Skeleton width="100%" height={600} />;
   }
 
   // Sort countries by happiness score, low to high
@@ -138,53 +142,53 @@ const Trends = () => {
     return d.currentValue as number;
   });
 
-  const mostHappy = takeRight(countriesByHappiness, 5);
-  const lessHappy = take(countriesByHappiness, 5);
+  const options = [
+    {
+      label: "Most happy",
+      group: CountryGroup.MOST_HAPPY,
+      icon: <SentimentSatisfiedAltIcon />,
+      countries: takeRight(countriesByHappiness, 5),
+    },
+    {
+      label: "Least happy",
+      group: CountryGroup.LEAST_HAPPY,
+      icon: <SentimentVeryDissatisfiedIcon />,
+      countries: take(countriesByHappiness, 5),
+    },
+  ];
 
   return (
-    <Box>
-      <Box>
-        <Chip
-          onClick={() => setSelectedOption("most-happy")}
-          label="Most happy"
-          icon={<SentimentSatisfiedAltIcon />}
-          variant={selectedOption === "most-happy" ? "filled" : "outlined"}
-        />
-        <Chip
-          onClick={() => setSelectedOption("less-happy")}
-          label="Least happy"
-          icon={<SentimentVeryDissatisfiedIcon />}
-          variant={selectedOption === "less-happy" ? "filled" : "outlined"}
-        />
-      </Box>
-      <Box>
-        {selectedOption === "most-happy" && (
-          <AutoWidth>
-            <MultiRegionMultiMetricChart
-              metrics={ALL_METRICS}
-              regions={regions.all}
-              initialMetric={MetricId.LIFE_LADDER}
-              initialRegions={mostHappy}
-              height={600}
-              width={0}
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <Stack direction="row" spacing={1}>
+          {options.map((option) => (
+            <Chip
+              key={`option-${option.group}`}
+              onClick={() => setSelectedOption(option.group)}
+              label={option.label}
+              icon={option.icon}
+              variant="outlined"
             />
-          </AutoWidth>
+          ))}
+        </Stack>
+      </Grid>
+      <Grid item xs={12}>
+        {options.map(
+          (option) =>
+            option.group === selectedOption && (
+              <AutoWidth key={`item-${option.group}`}>
+                <MultiRegionMultiMetricChart
+                  metrics={ALL_METRICS}
+                  regions={regions.all}
+                  initialMetric={MetricId.LIFE_LADDER}
+                  initialRegions={option.countries}
+                  height={600}
+                  width={0}
+                />
+              </AutoWidth>
+            )
         )}
-        {selectedOption === "less-happy" && (
-          <AutoWidth>
-            <MultiRegionMultiMetricChart
-              metrics={ALL_METRICS}
-              regions={regions.all}
-              initialMetric={MetricId.LIFE_LADDER}
-              initialRegions={lessHappy}
-              height={600}
-              width={0}
-            />
-          </AutoWidth>
-        )}
-      </Box>
-    </Box>
+      </Grid>
+    </Grid>
   );
-
-  return <div>{lessHappy.map((item) => `${item.regionId} `)}</div>;
 };
