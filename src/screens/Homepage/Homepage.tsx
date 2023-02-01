@@ -1,8 +1,10 @@
+import { People } from "@mui/icons-material";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-import { Button, Grid, Paper, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, Stack, Typography } from "@mui/material";
 
 import {
   AutoWidth,
+  InfoTooltip,
   MetricCompareTable,
   MetricWorldMap,
   MultiRegionMultiMetricChart,
@@ -79,6 +81,7 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
             <MetricWorldMap regionDB={regions} metric={MetricId.LIFE_LADDER} />
           </AutoWidth>
         </PageSection>
+
         <PageSection>
           <Typography variant="h2">Compare</Typography>
           <Paper style={{ height: 500, overflow: "auto" }}>
@@ -88,7 +91,26 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
               metrics={ALL_METRICS}
             />
           </Paper>
+          <Stack
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{ mt: 3 }}
+            direction="row"
+            spacing={2}
+          >
+            <Box>
+              <InfoTooltip title={microcopy.get("data.source.tooltip")}>
+                <Typography variant="paragraphSmall">
+                  {microcopy.get("data.source.text")}
+                </Typography>
+              </InfoTooltip>
+            </Box>
+            <Button variant="outlined" endIcon={<People />}>
+              Share
+            </Button>
+          </Stack>
         </PageSection>
+
         <PageSection>
           <Typography variant="h2">Explore Countries</Typography>
           <AutoWidth>
@@ -104,6 +126,24 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
               width={0}
             />
           </AutoWidth>
+          <Stack
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{ mt: 3 }}
+            direction="row"
+            spacing={2}
+          >
+            <Box>
+              <InfoTooltip title={microcopy.get("data.source.tooltip")}>
+                <Typography variant="paragraphSmall">
+                  {microcopy.get("data.source.text")}
+                </Typography>
+              </InfoTooltip>
+            </Box>
+            <Button variant="outlined" endIcon={<People />}>
+              Share
+            </Button>
+          </Stack>
         </PageSection>
       </PageContainer>
     </>

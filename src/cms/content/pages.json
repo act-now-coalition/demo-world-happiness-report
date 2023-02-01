@@ -26,6 +26,14 @@
           "microcopyContent": "Happiness Score"
         },
         {
+          "microcopyId": "data.source.text",
+          "microcopyContent": "About this data"
+        },
+        {
+          "microcopyId": "data.source.tooltip",
+          "microcopyContent": "About this data [PLACEHOLDER]"
+        },
+        {
           "microcopyId": "heading.intro",
           "microcopyContent": "This year marks the 10th anniversary of the World Happiness Report, which uses global survey data to report how people evaluate their own lives in more than 150 countries worldwide."
         }
