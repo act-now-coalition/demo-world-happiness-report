@@ -145,6 +145,15 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
                   width={0}
                 />
               </AutoWidth>
+              <Box display="flex" justifyContent={{ sm: "flex-end" }}>
+                <Button
+                  variant="outlined"
+                  size="large"
+                  endIcon={<PeopleIcon />}
+                >
+                  Share
+                </Button>
+              </Box>
             </Stack>
           </Stack>
         </PageSection>
