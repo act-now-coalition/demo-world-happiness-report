@@ -60,15 +60,10 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
             >
               <Button
                 variant="outlined"
+                color="secondary"
                 size="large"
                 endIcon={<PeopleIcon />}
-                sx={{
-                  color: theme.palette.common.white,
-                  borderColor: "#F2F3F440",
-                  "&:hover": {
-                    borderColor: "#F2F3F440",
-                  },
-                }}
+                sx={{ color: theme.palette.common.white }}
               >
                 Share
               </Button>
