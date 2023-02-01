@@ -1,42 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import {
-  Button,
-  Chip,
-  Grid,
-  Paper,
-  Skeleton,
-  Stack,
-  Typography,
-} from "@mui/material";
-import sortBy from "lodash/sortBy";
-import take from "lodash/take";
-import takeRight from "lodash/takeRight";
+import { Button, Grid, Paper, Typography } from "@mui/material";
 
 import {
   AutoWidth,
   MetricCompareTable,
+  MetricLegendThreshold,
   MetricWorldMap,
-  MultiRegionMultiMetricChart,
   RegionSearch,
-  useDataForRegionsAndMetrics,
 } from "@actnowcoalition/actnow.js";
 
 import { PageContainer, PageSection } from "components/Containers";
 import { PageMetaTags } from "components/SocialMetaTags";
 import { Page, cms } from "src/cms";
+import { Trends } from "src/components/Trends";
 import { ALL_METRICS, MetricId } from "src/utils/metrics";
 import { regions } from "src/utils/regions";
 
-/**
- *
- * @param page - The page we are using
- * @defaultValue b
- * @returns
- */
 const Homepage: React.FC<{ page: Page }> = ({ page }) => {
   const { microcopy, metaTags } = page;
   return (
@@ -89,14 +70,27 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
           </Grid>
         </PageSection>
         <PageSection
-          sx={{ backgroundColor: "#fff", padding: 5, borderRadius: 2 }}
+          sx={{
+            backgroundColor: (theme) => theme.palette.common.white,
+            padding: { xs: 0.5, sm: 5 },
+            borderRadius: 2,
+          }}
         >
           <AutoWidth>
             <MetricWorldMap regionDB={regions} metric={MetricId.LIFE_LADDER} />
           </AutoWidth>
+          <MetricLegendThreshold
+            orientation="horizontal"
+            height={8}
+            borderRadius={4}
+            width={240}
+            metric={MetricId.LIFE_LADDER}
+          />
         </PageSection>
         <PageSection>
-          <Typography variant="h2">Compare</Typography>
+          <Typography variant="h2" sx={{ mb: 3 }}>
+            Compare
+          </Typography>
           <Paper style={{ height: 500, overflow: "auto" }}>
             <MetricCompareTable
               regionDB={regions}
@@ -107,7 +101,7 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
         </PageSection>
         <PageSection>
           <Typography variant="h2" sx={{ mb: 3 }}>
-            Explore Countries
+            Explore
           </Typography>
           <Trends />
         </PageSection>
@@ -117,78 +111,3 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
 };
 
 export default Homepage;
-
-enum CountryGroup {
-  MOST_HAPPY = "MOST_HAPPY",
-  LEAST_HAPPY = "LEAST_HAPPY",
-}
-
-const Trends = () => {
-  const [selectedOption, setSelectedOption] = useState<CountryGroup>(
-    CountryGroup.MOST_HAPPY
-  );
-
-  const { error, data } = useDataForRegionsAndMetrics(regions.all, [
-    MetricId.LIFE_LADDER,
-  ]);
-
-  if (error || !data) {
-    return <Skeleton width="100%" height={600} />;
-  }
-
-  // Sort countries by happiness score, low to high
-  const countriesByHappiness = sortBy(regions.all, (region) => {
-    const d = data.metricData(region, MetricId.LIFE_LADDER);
-    return d.currentValue as number;
-  });
-
-  const options = [
-    {
-      label: "Most happy",
-      group: CountryGroup.MOST_HAPPY,
-      icon: <SentimentSatisfiedAltIcon />,
-      countries: takeRight(countriesByHappiness, 5),
-    },
-    {
-      label: "Least happy",
-      group: CountryGroup.LEAST_HAPPY,
-      icon: <SentimentVeryDissatisfiedIcon />,
-      countries: take(countriesByHappiness, 5),
-    },
-  ];
-
-  return (
-    <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <Stack direction="row" spacing={1}>
-          {options.map((option) => (
-            <Chip
-              key={`option-${option.group}`}
-              onClick={() => setSelectedOption(option.group)}
-              label={option.label}
-              icon={option.icon}
-              variant="outlined"
-            />
-          ))}
-        </Stack>
-      </Grid>
-      <Grid item xs={12}>
-        {options.map(
-          (option) =>
-            option.group === selectedOption && (
-              <AutoWidth key={`item-${option.group}`}>
-                <MultiRegionMultiMetricChart
-                  metrics={ALL_METRICS}
-                  regions={regions.all}
-                  initialMetric={MetricId.LIFE_LADDER}
-                  initialRegions={option.countries}
-                  height={600}
-                  width={0}
-                />
-              </AutoWidth>
-            )
-        )}
-      </Grid>
-    </Grid>
-  );
-};
