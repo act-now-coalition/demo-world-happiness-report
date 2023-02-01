@@ -1,26 +1,23 @@
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-import { Button, Grid, Paper, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, Stack, Typography } from "@mui/material";
 
 import {
   AutoWidth,
+  InfoTooltip,
   MetricCompareTable,
   MetricWorldMap,
   MultiRegionMultiMetricChart,
   RegionSearch,
+  ShareButton,
 } from "@actnowcoalition/actnow.js";
 
 import { PageContainer, PageSection } from "components/Containers";
 import { PageMetaTags } from "components/SocialMetaTags";
 import { Page, cms } from "src/cms";
+import { Microcopy } from "src/cms/models/Microcopy";
 import { ALL_METRICS, MetricId } from "src/utils/metrics";
 import { regions } from "src/utils/regions";
 
-/**
- *
- * @param page - The page we are using
- * @defaultValue b
- * @returns
- */
 const Homepage: React.FC<{ page: Page }> = ({ page }) => {
   const { microcopy, metaTags } = page;
   return (
@@ -79,6 +76,7 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
             <MetricWorldMap regionDB={regions} metric={MetricId.LIFE_LADDER} />
           </AutoWidth>
         </PageSection>
+
         <PageSection>
           <Typography variant="h2">Compare</Typography>
           <Paper style={{ height: 500, overflow: "auto" }}>
@@ -88,7 +86,9 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
               metrics={ALL_METRICS}
             />
           </Paper>
+          <ShareBlock microcopy={microcopy} />
         </PageSection>
+
         <PageSection>
           <Typography variant="h2">Explore Countries</Typography>
           <AutoWidth>
@@ -104,6 +104,7 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
               width={0}
             />
           </AutoWidth>
+          <ShareBlock microcopy={microcopy} />
         </PageSection>
       </PageContainer>
     </>
@@ -111,3 +112,25 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
 };
 
 export default Homepage;
+
+const ShareBlock = ({ microcopy }: { microcopy: Microcopy }) => (
+  <Stack
+    alignItems="center"
+    justifyContent="space-between"
+    sx={{ mt: 3 }}
+    direction="row"
+    spacing={2}
+  >
+    <Box>
+      <InfoTooltip title={<span>{microcopy.get("data.source.tooltip")}</span>}>
+        <Typography variant="paragraphSmall">
+          {microcopy.get("data.source.text")}
+        </Typography>
+      </InfoTooltip>
+    </Box>
+    <ShareButton
+      url={microcopy.get("share.url")}
+      quote={microcopy.get("share.quote")}
+    />
+  </Stack>
+);
