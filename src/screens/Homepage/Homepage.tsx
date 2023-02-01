@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-import {
-  Box,
-  Button,
-  Grid,
-  Paper,
-  ToggleButton,
-  ToggleButtonGroup,
-  Typography,
-} from "@mui/material";
+import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import { Box, Button, Chip, Grid, Paper, Typography } from "@mui/material";
 import sortBy from "lodash/sortBy";
 import take from "lodash/take";
 import takeRight from "lodash/takeRight";
@@ -130,15 +124,6 @@ export default Homepage;
 const Trends = () => {
   const [selectedOption, setSelectedOption] = useState("most-happy");
 
-  const onSelectOption = (
-    event: React.MouseEvent,
-    newSelectedOption: string
-  ) => {
-    if (newSelectedOption !== null) {
-      setSelectedOption(newSelectedOption);
-    }
-  };
-
   const { error, data } = useDataForRegionsAndMetrics(regions.all, [
     MetricId.LIFE_LADDER,
   ]);
@@ -153,41 +138,51 @@ const Trends = () => {
     return d.currentValue as number;
   });
 
-  const mostHappy = takeRight(countriesByHappiness, 10);
-  const lessHappy = take(countriesByHappiness, 10);
-
-  const initialRegions =
-    selectedOption === "most-happy"
-      ? mostHappy
-      : selectedOption === "less-happy"
-      ? lessHappy
-      : [
-          regions.findByRegionIdStrict("AFG"),
-          regions.findByRegionIdStrict("CAN"),
-        ];
+  const mostHappy = takeRight(countriesByHappiness, 5);
+  const lessHappy = take(countriesByHappiness, 5);
 
   return (
     <Box>
-      <ToggleButtonGroup
-        value={selectedOption}
-        exclusive
-        onChange={onSelectOption}
-      >
-        <ToggleButton value="most-happy">Most Happy</ToggleButton>
-        <ToggleButton value="less-happy">Less Happy</ToggleButton>
-        <ToggleButton value="custom">Custom</ToggleButton>
-      </ToggleButtonGroup>
-
-      <AutoWidth>
-        <MultiRegionMultiMetricChart
-          metrics={ALL_METRICS}
-          regions={regions.all}
-          initialMetric={MetricId.LIFE_LADDER}
-          initialRegions={initialRegions}
-          height={600}
-          width={0}
+      <Box>
+        <Chip
+          onClick={() => setSelectedOption("most-happy")}
+          label="Most happy"
+          icon={<SentimentSatisfiedAltIcon />}
+          variant={selectedOption === "most-happy" ? "filled" : "outlined"}
         />
-      </AutoWidth>
+        <Chip
+          onClick={() => setSelectedOption("less-happy")}
+          label="Least happy"
+          icon={<SentimentVeryDissatisfiedIcon />}
+          variant={selectedOption === "less-happy" ? "filled" : "outlined"}
+        />
+      </Box>
+      <Box>
+        {selectedOption === "most-happy" && (
+          <AutoWidth>
+            <MultiRegionMultiMetricChart
+              metrics={ALL_METRICS}
+              regions={regions.all}
+              initialMetric={MetricId.LIFE_LADDER}
+              initialRegions={mostHappy}
+              height={600}
+              width={0}
+            />
+          </AutoWidth>
+        )}
+        {selectedOption === "less-happy" && (
+          <AutoWidth>
+            <MultiRegionMultiMetricChart
+              metrics={ALL_METRICS}
+              regions={regions.all}
+              initialMetric={MetricId.LIFE_LADDER}
+              initialRegions={lessHappy}
+              height={600}
+              width={0}
+            />
+          </AutoWidth>
+        )}
+      </Box>
     </Box>
   );
 
