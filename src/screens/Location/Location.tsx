@@ -77,7 +77,7 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
         <PageSection
           sx={{
             backgroundColor: theme.palette.common.white,
-            padding: 7,
+            padding: 3,
             borderRadius: 3,
           }}
         >
