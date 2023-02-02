@@ -26,6 +26,22 @@
           "microcopyContent": "Happiness Score"
         },
         {
+          "microcopyId": "data.source.text",
+          "microcopyContent": "About this data"
+        },
+        {
+          "microcopyId": "share.quote",
+          "microcopyContent": "Share Quote [PLACEHOLDER]"
+        },
+        {
+          "microcopyId": "share.url",
+          "microcopyContent": "https://demo-world-happiness-report.vercel.app/"
+        },
+        {
+          "microcopyId": "data.source.tooltip",
+          "microcopyContent": "Data from the World Happiness Report and Gallup World Poll data. Helliwell, J. F., Layard, R., Sachs, J. D., De Neve, J.-E., Aknin, L. B., & Wang, S. (Eds.). (2022). World Happiness Report 2022. New York: Sustainable Development Solutions Network."
+        },
+        {
           "microcopyId": "heading.intro",
           "microcopyContent": "This year marks the 10th anniversary of the World Happiness Report, which uses global survey data to report how people evaluate their own lives in more than 150 countries worldwide."
         }
