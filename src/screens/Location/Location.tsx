@@ -34,7 +34,7 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
       <PageMetaTags
         siteName="Act Now Location Page"
         url={`/us/${region.shortName}`}
-        title={metaTags.title}
+        title={"WHR - ".concat(region.shortName)}
         description={metaTags.description}
         socialImg={metaTags.socialImg}
         socialImgWidth={metaTags.socialImgWidth}

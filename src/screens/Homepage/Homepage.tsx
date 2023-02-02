@@ -1,5 +1,13 @@
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-import { Box, Button, Grid, Paper, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  InputLabel,
+  Paper,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 import {
   AutoWidth,
@@ -11,6 +19,7 @@ import {
   ShareButton,
 } from "@actnowcoalition/actnow.js";
 
+import { styled, theme } from "../../styles";
 import { PageContainer, PageSection } from "components/Containers";
 import { PageMetaTags } from "components/SocialMetaTags";
 import { Page, cms } from "src/cms";
@@ -51,13 +60,20 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
             sx={{ mt: { md: 6, xs: 4 }, mb: { md: 16, xs: 8 } }}
           >
             <Grid item xs={12} md={6}>
-              <RegionSearch
+              <InputLabel
+                htmlFor="region-search"
+                sx={{ color: "white", mb: "4px" }}
+              >
+                Search for your country
+              </InputLabel>
+              <StyledRegionSearch
+                id="region-search"
                 options={regions.all}
                 regionDB={regions}
-                inputLabel="Search for your country..."
+                inputLabel=""
               />
             </Grid>
-            <Grid item xs={12} md>
+            <Grid item xs={12} md display="flex" alignItems="flex-end">
               <Button
                 href="https://happiness-report.s3.amazonaws.com/2022/WHR+22.pdf"
                 variant="text"
@@ -134,3 +150,9 @@ const ShareBlock = ({ microcopy }: { microcopy: Microcopy }) => (
     />
   </Stack>
 );
+
+const StyledRegionSearch = styled(RegionSearch)`
+  & .MuiFormControl-root {
+    border-radius: ${theme.shape.borderRadius}px;
+  }
+`;
