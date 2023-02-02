@@ -17,7 +17,7 @@ const LocationOverview = ({ region }: LocationOverviewProps) => {
   return (
     <Box display="flex" flexDirection={{ xs: "column", sm: "row" }}>
       <Box flex={1}>
-        <MetricScoreOverview region={region} metric={MetricId.LIFE_LADDER} />
+        <MetricScoreOverview region={region} metric={MetricId.HAPPINESS} />
         <Box mt={4}>
           <Typography variant="paragraphLarge">
             <ul>

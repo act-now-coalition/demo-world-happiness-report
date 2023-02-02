@@ -29,7 +29,7 @@ export const Trends = () => {
   );
 
   const { error, data } = useDataForRegionsAndMetrics(regions.all, [
-    MetricId.LIFE_LADDER,
+    MetricId.HAPPINESS,
   ]);
 
   if (error || !data) {
@@ -38,7 +38,7 @@ export const Trends = () => {
 
   // Sort countries by happiness score, low to high
   const countriesByHappiness = sortBy(regions.all, (region) => {
-    const d = data.metricData(region, MetricId.LIFE_LADDER);
+    const d = data.metricData(region, MetricId.HAPPINESS);
     return d.currentValue as number;
   });
 
@@ -86,7 +86,7 @@ export const Trends = () => {
                 metrics={ALL_METRICS}
                 regions={regions.all}
                 timePeriods={timePeriods}
-                initialMetric={MetricId.LIFE_LADDER}
+                initialMetric={MetricId.HAPPINESS}
                 initialRegions={option.countries}
                 height={600}
                 width={0}

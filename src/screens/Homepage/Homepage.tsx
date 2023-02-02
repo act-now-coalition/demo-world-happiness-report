@@ -80,14 +80,14 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
           }}
         >
           <AutoWidth>
-            <MetricWorldMap regionDB={regions} metric={MetricId.LIFE_LADDER} />
+            <MetricWorldMap regionDB={regions} metric={MetricId.HAPPINESS} />
           </AutoWidth>
           <MetricLegendThreshold
             orientation="horizontal"
             height={8}
             borderRadius={4}
             width={240}
-            metric={MetricId.LIFE_LADDER}
+            metric={MetricId.HAPPINESS}
           />
         </PageSection>
 
