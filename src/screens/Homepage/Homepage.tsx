@@ -1,3 +1,5 @@
+import React from "react";
+
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import { Box, Button, Grid, Paper, Stack, Typography } from "@mui/material";
 
@@ -5,8 +7,8 @@ import {
   AutoWidth,
   InfoTooltip,
   MetricCompareTable,
+  MetricLegendThreshold,
   MetricWorldMap,
-  MultiRegionMultiMetricChart,
   RegionSearch,
   ShareButton,
 } from "@actnowcoalition/actnow.js";
@@ -15,6 +17,7 @@ import { PageContainer, PageSection } from "components/Containers";
 import { PageMetaTags } from "components/SocialMetaTags";
 import { Page, cms } from "src/cms";
 import { Microcopy } from "src/cms/models/Microcopy";
+import { Trends } from "src/components/Trends";
 import { ALL_METRICS, MetricId } from "src/utils/metrics";
 import { regions } from "src/utils/regions";
 
@@ -70,15 +73,28 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
           </Grid>
         </PageSection>
         <PageSection
-          sx={{ backgroundColor: "#fff", padding: 5, borderRadius: 2 }}
+          sx={{
+            backgroundColor: (theme) => theme.palette.common.white,
+            padding: { xs: 0.5, sm: 5 },
+            borderRadius: 2,
+          }}
         >
           <AutoWidth>
             <MetricWorldMap regionDB={regions} metric={MetricId.LIFE_LADDER} />
           </AutoWidth>
+          <MetricLegendThreshold
+            orientation="horizontal"
+            height={8}
+            borderRadius={4}
+            width={240}
+            metric={MetricId.LIFE_LADDER}
+          />
         </PageSection>
 
         <PageSection>
-          <Typography variant="h2">Compare</Typography>
+          <Typography variant="h2" sx={{ mb: 3 }}>
+            Compare
+          </Typography>
           <Paper style={{ height: 500, overflow: "auto" }}>
             <MetricCompareTable
               regionDB={regions}
@@ -90,20 +106,10 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
         </PageSection>
 
         <PageSection>
-          <Typography variant="h2">Explore Countries</Typography>
-          <AutoWidth>
-            <MultiRegionMultiMetricChart
-              metrics={ALL_METRICS}
-              regions={regions.all}
-              initialMetric={MetricId.LIFE_LADDER}
-              initialRegions={[
-                regions.findByRegionIdStrict("AFG"),
-                regions.findByRegionIdStrict("CAN"),
-              ]}
-              height={600}
-              width={0}
-            />
-          </AutoWidth>
+          <Typography variant="h2" sx={{ mb: 3 }}>
+            Explore
+          </Typography>
+          <Trends />
           <ShareBlock microcopy={microcopy} />
         </PageSection>
       </PageContainer>
