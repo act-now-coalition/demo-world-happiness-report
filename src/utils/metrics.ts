@@ -5,8 +5,8 @@ import {
 } from "@actnowcoalition/actnow.js";
 
 import DataSnapshotJSON from "../assets/data/data-snapshot.json";
+import { theme } from "../styles";
 import { regions } from "./regions";
-import { theme } from "src/styles";
 
 export enum MetricId {
   HAPPINESS = "happiness",
