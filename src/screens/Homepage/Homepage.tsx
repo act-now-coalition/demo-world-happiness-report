@@ -1,19 +1,22 @@
 import React from "react";
 
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-import { Button, Grid, Paper, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, Stack, Typography } from "@mui/material";
 
 import {
   AutoWidth,
+  InfoTooltip,
   MetricCompareTable,
   MetricLegendThreshold,
   MetricWorldMap,
   RegionSearch,
+  ShareButton,
 } from "@actnowcoalition/actnow.js";
 
 import { PageContainer, PageSection } from "components/Containers";
 import { PageMetaTags } from "components/SocialMetaTags";
 import { Page, cms } from "src/cms";
+import { Microcopy } from "src/cms/models/Microcopy";
 import { Trends } from "src/components/Trends";
 import { ALL_METRICS, MetricId } from "src/utils/metrics";
 import { regions } from "src/utils/regions";
@@ -87,6 +90,7 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
             metric={MetricId.LIFE_LADDER}
           />
         </PageSection>
+
         <PageSection>
           <Typography variant="h2" sx={{ mb: 3 }}>
             Compare
@@ -98,12 +102,15 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
               metrics={ALL_METRICS}
             />
           </Paper>
+          <ShareBlock microcopy={microcopy} />
         </PageSection>
+
         <PageSection>
           <Typography variant="h2" sx={{ mb: 3 }}>
             Explore
           </Typography>
           <Trends />
+          <ShareBlock microcopy={microcopy} />
         </PageSection>
       </PageContainer>
     </>
@@ -111,3 +118,25 @@ const Homepage: React.FC<{ page: Page }> = ({ page }) => {
 };
 
 export default Homepage;
+
+const ShareBlock = ({ microcopy }: { microcopy: Microcopy }) => (
+  <Stack
+    alignItems="center"
+    justifyContent="space-between"
+    sx={{ mt: 3 }}
+    direction="row"
+    spacing={2}
+  >
+    <Box>
+      <InfoTooltip title={<span>{microcopy.get("data.source.tooltip")}</span>}>
+        <Typography variant="paragraphSmall">
+          {microcopy.get("data.source.text")}
+        </Typography>
+      </InfoTooltip>
+    </Box>
+    <ShareButton
+      url={microcopy.get("share.url")}
+      quote={microcopy.get("share.quote")}
+    />
+  </Stack>
+);

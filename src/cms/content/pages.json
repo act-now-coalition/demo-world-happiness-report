@@ -6,6 +6,22 @@
         {
           "microcopyId": "heading.updated",
           "microcopyContent": "World Happiness Report 2022"
+        },
+        {
+          "microcopyId": "data.source.text",
+          "microcopyContent": "About this data"
+        },
+        {
+          "microcopyId": "data.source.tooltip",
+          "microcopyContent": "Data from the World Happiness Report and Gallup World Poll data. Helliwell, J. F., Layard, R., Sachs, J. D., De Neve, J.-E., Aknin, L. B., & Wang, S. (Eds.). (2022). World Happiness Report 2022. New York: Sustainable Development Solutions Network."
+        },
+        {
+          "microcopyId": "share.quote",
+          "microcopyContent": "Share Quote [PLACEHOLDER]"
+        },
+        {
+          "microcopyId": "share.url",
+          "microcopyContent": "https://demo-world-happiness-report.vercel.app/"
         }
       ],
       "metaTags": {
@@ -24,6 +40,22 @@
         {
           "microcopyId": "heading.title",
           "microcopyContent": "Happiness Score"
+        },
+        {
+          "microcopyId": "data.source.text",
+          "microcopyContent": "About this data"
+        },
+        {
+          "microcopyId": "share.quote",
+          "microcopyContent": "Share Quote [PLACEHOLDER]"
+        },
+        {
+          "microcopyId": "share.url",
+          "microcopyContent": "https://demo-world-happiness-report.vercel.app/"
+        },
+        {
+          "microcopyId": "data.source.tooltip",
+          "microcopyContent": "Data from the World Happiness Report and Gallup World Poll data. Helliwell, J. F., Layard, R., Sachs, J. D., De Neve, J.-E., Aknin, L. B., & Wang, S. (Eds.). (2022). World Happiness Report 2022. New York: Sustainable Development Solutions Network."
         },
         {
           "microcopyId": "heading.intro",
