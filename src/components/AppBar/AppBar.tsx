@@ -9,6 +9,7 @@ import {
   ButtonProps,
   Divider,
   Drawer,
+  Grid,
   IconButton,
   Link,
   List,
@@ -16,9 +17,15 @@ import {
   ListItemButton,
   AppBar as MuiAppBar,
   AppBarProps as MuiAppBarProps,
+  Stack,
   Toolbar,
-  useTheme,
+  ToolbarProps,
+  useScrollTrigger,
 } from "@mui/material";
+
+import { RegionSearch } from "@actnowcoalition/actnow.js";
+
+import { regions } from "src/utils/regions";
 
 interface AppBarItem {
   href: string;
@@ -43,24 +50,56 @@ const menuItems: AppBarItem[] = [
 ];
 
 const AppBar: React.FC<MuiAppBarProps> = (props) => {
-  const theme = useTheme();
-
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const openDrawer = () => setMobileOpen(true);
-  const closeDrawer = () => setMobileOpen(false);
-
-  const logo = (
-    <Link href="/" sx={{ display: "block", flexGrow: 1 }}>
-      <img src="/logo-color.svg" height={32} alt="World Happiness Report" />
-    </Link>
-  );
+  // Hide the RegionSearch until the user scrolls past 400px
+  const showSearch = useScrollTrigger({ threshold: 400 });
 
   // NOTE: If you change the height of the AppBar you should adjust the scroll
   // padding set in src/styles/globalStyles.ts to make sure that anchor links
   // are still scrolled into view.
   return (
     <MuiAppBar position="sticky" component="nav" {...props}>
-      <Toolbar>
+      <MobileAppBar sx={{ display: { md: "none" } }} />
+      <Toolbar sx={{ display: { xs: "none", md: "flex" } }}>
+        <Grid container spacing={1}>
+          <Grid item xs={4}>
+            {logo}
+          </Grid>
+          <Grid item xs>
+            <Box sx={{ display: showSearch ? "block" : "none" }}>
+              <RegionSearch
+                options={regions.all}
+                regionDB={regions}
+                inputLabel="Search for your country..."
+              />
+            </Box>
+          </Grid>
+          <Grid item xs={4}>
+            <Stack direction="row" spacing={2} justifyContent="flex-end">
+              {menuItems.map((item, itemIndex) => (
+                <Button
+                  key={`item-${itemIndex}`}
+                  size="small"
+                  href={item.href}
+                  variant={item.variant}
+                  endIcon={item.endIcon}
+                >
+                  {item.text}
+                </Button>
+              ))}
+            </Stack>
+          </Grid>
+        </Grid>
+      </Toolbar>
+    </MuiAppBar>
+  );
+};
+
+const MobileAppBar = (props: ToolbarProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Toolbar {...props}>
         <Box
           sx={{ display: "flex", alignItems: "center", gap: 1, width: "100%" }}
         >
@@ -81,7 +120,7 @@ const AppBar: React.FC<MuiAppBarProps> = (props) => {
             aria-label="open menu"
             edge="end"
             sx={{ display: { sm: "none" } }}
-            onClick={openDrawer}
+            onClick={() => setIsOpen(true)}
           >
             <MenuIcon />
           </IconButton>
@@ -89,15 +128,17 @@ const AppBar: React.FC<MuiAppBarProps> = (props) => {
       </Toolbar>
       <Drawer
         anchor="right"
-        open={mobileOpen}
+        open={isOpen}
         sx={{
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: 240 },
         }}
         ModalProps={{ keepMounted: true }}
-        onClose={closeDrawer}
+        onClose={() => setIsOpen(false)}
       >
         <List sx={{ py: 0 }}>
-          <ListItem sx={{ minHeight: theme.mixins.toolbar.minHeight }}>
+          <ListItem
+            sx={{ minHeight: (theme) => theme.mixins.toolbar.minHeight }}
+          >
             {logo}
           </ListItem>
           <Divider />
@@ -108,8 +149,14 @@ const AppBar: React.FC<MuiAppBarProps> = (props) => {
           ))}
         </List>
       </Drawer>
-    </MuiAppBar>
+    </>
   );
 };
+
+const logo = (
+  <Link href="/" sx={{ display: "block", flexGrow: 1 }}>
+    <img src="/logo-color.svg" height={32} alt="World Happiness Report" />
+  </Link>
+);
 
 export default AppBar;
