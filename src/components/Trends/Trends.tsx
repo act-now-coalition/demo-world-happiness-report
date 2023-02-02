@@ -58,8 +58,8 @@ export const Trends = () => {
   ];
 
   const timePeriods = [
-    createTimePeriodOption(4, TimeUnit.YEARS),
-    createTimePeriodOption(6, TimeUnit.YEARS),
+    createTimePeriodOption(5, TimeUnit.YEARS),
+    createTimePeriodOption(10, TimeUnit.YEARS),
   ];
 
   return (
@@ -78,22 +78,21 @@ export const Trends = () => {
         </Stack>
       </Grid>
       <Grid item xs={12}>
-        {options.map(
-          (option) =>
-            option.group === selectedOption && (
-              <AutoWidth key={`item-${option.group}`}>
-                <MultiRegionMultiMetricChart
-                  metrics={ALL_METRICS}
-                  regions={regions.all}
-                  timePeriods={timePeriods}
-                  initialMetric={MetricId.LIFE_LADDER}
-                  initialRegions={option.countries}
-                  height={600}
-                  width={0}
-                />
-              </AutoWidth>
-            )
-        )}
+        {options
+          .filter(({ group }) => group === selectedOption)
+          .map((option) => (
+            <AutoWidth key={`item-${option.group}`}>
+              <MultiRegionMultiMetricChart
+                metrics={ALL_METRICS}
+                regions={regions.all}
+                timePeriods={timePeriods}
+                initialMetric={MetricId.LIFE_LADDER}
+                initialRegions={option.countries}
+                height={600}
+                width={0}
+              />
+            </AutoWidth>
+          ))}
       </Grid>
     </Grid>
   );
