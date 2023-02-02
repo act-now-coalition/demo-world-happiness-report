@@ -3,10 +3,12 @@ import { Box, Button, Paper, Stack, Typography, useTheme } from "@mui/material";
 
 import {
   AutoWidth,
+  InfoTooltip,
   MetricCompareTable,
   MetricLineThresholdChart,
   MultiRegionMultiMetricChart,
   Region,
+  ShareButton,
 } from "@actnowcoalition/actnow.js";
 
 import {
@@ -17,6 +19,7 @@ import {
 import LocationOverview from "components/LocationOverview";
 import { PageMetaTags } from "components/SocialMetaTags";
 import { Page } from "src/cms";
+import { Microcopy } from "src/cms/models/Microcopy";
 import { ALL_METRICS, MetricId } from "src/utils/metrics";
 import { regions } from "src/utils/regions";
 
@@ -92,15 +95,7 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
                   metrics={ALL_METRICS}
                 />
               </Paper>
-              <Box display="flex" justifyContent={{ sm: "flex-end" }}>
-                <Button
-                  variant="outlined"
-                  size="large"
-                  endIcon={<PeopleIcon />}
-                >
-                  Share
-                </Button>
-              </Box>
+              <ShareBlock microcopy={microcopy} />
             </Stack>
             {/* Overall Score Chart */}
             <Stack spacing={3}>
@@ -117,15 +112,7 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
                 sit amet imperdiet lectus.
               </Typography>
-              <Box display="flex" justifyContent={{ sm: "flex-end" }}>
-                <Button
-                  variant="outlined"
-                  size="large"
-                  endIcon={<PeopleIcon />}
-                >
-                  Share
-                </Button>
-              </Box>
+              <ShareBlock microcopy={microcopy} />
             </Stack>
             {/* Explore Chart */}
             <Stack spacing={2}>
@@ -145,15 +132,7 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
                   width={0}
                 />
               </AutoWidth>
-              <Box display="flex" justifyContent={{ sm: "flex-end" }}>
-                <Button
-                  variant="outlined"
-                  size="large"
-                  endIcon={<PeopleIcon />}
-                >
-                  Share
-                </Button>
-              </Box>
+              <ShareBlock microcopy={microcopy} />
             </Stack>
           </Stack>
         </PageSection>
@@ -161,3 +140,25 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
     </>
   );
 };
+
+const ShareBlock = ({ microcopy }: { microcopy: Microcopy }) => (
+  <Stack
+    alignItems="center"
+    justifyContent="space-between"
+    sx={{ mt: 3 }}
+    direction="row"
+    spacing={2}
+  >
+    <Box>
+      <InfoTooltip title={<span>{microcopy.get("data.source.tooltip")}</span>}>
+        <Typography variant="paragraphSmall">
+          {microcopy.get("data.source.text")}
+        </Typography>
+      </InfoTooltip>
+    </Box>
+    <ShareButton
+      url={microcopy.get("share.url")}
+      quote={microcopy.get("share.quote")}
+    />
+  </Stack>
+);
