@@ -62,6 +62,7 @@ export const metrics: MetricDefinition[] = [
       minimumFractionDigits: 1,
       maximumFractionDigits: 1,
     },
+    minValue: 0,
   },
   {
     id: MetricId.SOCIAL,
@@ -78,6 +79,7 @@ export const metrics: MetricDefinition[] = [
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     },
+    minValue: 0,
   },
   {
     id: MetricId.HEALTH,
@@ -93,6 +95,7 @@ export const metrics: MetricDefinition[] = [
       minimumFractionDigits: 1,
       maximumFractionDigits: 1,
     },
+    minValue: 0,
   },
   {
     id: MetricId.FREEDOM,
@@ -109,6 +112,7 @@ export const metrics: MetricDefinition[] = [
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     },
+    minValue: 0,
   },
   {
     id: MetricId.GENEROSITY,
@@ -140,6 +144,7 @@ export const metrics: MetricDefinition[] = [
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     },
+    minValue: 0,
   },
 ];
 

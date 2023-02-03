@@ -109,8 +109,8 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
                 />
               </AutoWidth>
               <Typography variant="paragraphLarge">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                sit amet imperdiet lectus.
+                Life evaluations (answers to the Cantril ladder question) for{" "}
+                {region.shortName}.
               </Typography>
               <ShareBlock microcopy={microcopy} />
             </Stack>
