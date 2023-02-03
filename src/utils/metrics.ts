@@ -5,11 +5,11 @@ import {
 } from "@actnowcoalition/actnow.js";
 
 import DataSnapshotJSON from "../assets/data/data-snapshot.json";
+import { theme } from "../styles";
 import { regions } from "./regions";
-import { theme } from "src/styles";
 
 export enum MetricId {
-  LIFE_LADDER = "Life Ladder",
+  HAPPINESS = "happiness",
   GDP = "gdp",
   SOCIAL = "social",
   HEALTH = "health",
@@ -32,7 +32,7 @@ export const dataProviders = [
 
 export const metrics: MetricDefinition[] = [
   {
-    id: MetricId.LIFE_LADDER,
+    id: MetricId.HAPPINESS,
     name: "Happiness",
     extendedName: "Living best possible life (X/10)",
     dataReference: {

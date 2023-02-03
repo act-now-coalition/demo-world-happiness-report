@@ -103,7 +103,7 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
               <AutoWidth>
                 <MetricLineThresholdChart
                   region={region}
-                  metric={MetricId.LIFE_LADDER}
+                  metric={MetricId.HAPPINESS}
                   height={400}
                   width={0}
                 />
@@ -121,7 +121,7 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
                 <MultiRegionMultiMetricChart
                   metrics={ALL_METRICS}
                   regions={regions.all}
-                  initialMetric={MetricId.LIFE_LADDER}
+                  initialMetric={MetricId.HAPPINESS}
                   initialRegions={[
                     region,
                     regions.findByRegionIdStrict("LBN"),

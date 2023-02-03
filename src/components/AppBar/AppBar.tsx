@@ -25,7 +25,7 @@ import {
 
 import { RegionSearch } from "@actnowcoalition/actnow.js";
 
-import { regions } from "src/utils/regions";
+import { regions } from "../../utils/regions";
 
 interface AppBarItem {
   href: string;
