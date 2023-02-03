@@ -16,6 +16,7 @@ import { ScreenshotWrapper } from "components/Containers";
 import { ShareImageLocation } from "components/ShareImages";
 import { searchDomForClass } from "src/utils/share-pages";
 
+// http://localhost:3000/internal/share-image/location?regionId=CAN
 const LocationSharePage: NextPage = () => {
   const router = useRouter();
   const ref = useRef<Element>(null);
@@ -33,7 +34,7 @@ const LocationSharePage: NextPage = () => {
   if (isEmpty(router.query)) {
     return (
       <span>
-        Page loading or no query params were provided. Expects params: metric
+        Page loading or no query params were provided. Expects params: regionId
       </span>
     );
   }

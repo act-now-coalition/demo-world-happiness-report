@@ -9,6 +9,7 @@ import { ScreenshotWrapper } from "components/Containers";
 import { ShareImageHomepage } from "components/ShareImages";
 import { searchDomForClass } from "src/utils/share-pages";
 
+// http://localhost:3000/internal/share-image/homepage
 const HomeSharePage: NextPage = () => {
   const ref = useRef<Element>(null);
 
