@@ -19,7 +19,7 @@ import {
   ShareButton,
 } from "@actnowcoalition/actnow.js";
 
-import { styled, theme } from "../../styles";
+import { styled } from "../../styles";
 import { PageContainer, PageSection } from "components/Containers";
 import { PageMetaTags } from "components/SocialMetaTags";
 import { Page, cms } from "src/cms";
@@ -153,6 +153,6 @@ const ShareBlock = ({ microcopy }: { microcopy: Microcopy }) => (
 
 const StyledRegionSearch = styled(RegionSearch)`
   & .MuiFormControl-root {
-    border-radius: ${theme.shape.borderRadius}px;
+    border-radius: ${({ theme }) => theme.shape.borderRadius}px;
   }
 `;
