@@ -34,7 +34,7 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
       <PageMetaTags
         siteName="Act Now Location Page"
         url={`/us/${region.shortName}`}
-        title={metaTags.title}
+        title={`${region.shortName} - World Happiness Report`}
         description={metaTags.description}
         socialImg={metaTags.socialImg}
         socialImgWidth={metaTags.socialImgWidth}
@@ -109,8 +109,8 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
                 />
               </AutoWidth>
               <Typography variant="paragraphLarge">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                sit amet imperdiet lectus.
+                Life evaluations (answers to the Cantril ladder question) for{" "}
+                {region.shortName}.
               </Typography>
               <ShareBlock microcopy={microcopy} />
             </Stack>
