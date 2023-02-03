@@ -76,6 +76,10 @@ export const Placeholder = styled(Box)`
   }
 `;
 
+const screenshotWidth = 900;
+const screenshotAspectRatio = 16 / 9;
+const screenshotHeight = screenshotWidth / screenshotAspectRatio;
+
 /**
  * Container used to create correct dimensions for preview images.
  * Wrap the entirety of the share page content in this container and
@@ -83,19 +87,8 @@ export const Placeholder = styled(Box)`
  */
 export const ScreenshotWrapper = styled(Box)`
   margin: 100px auto;
-  width: 1200px;
-  height: 630px;
+  width: ${screenshotWidth}px;
+  height: ${screenshotHeight}px;
+  aspect-ratio: ${screenshotAspectRatio};
   overflow: hidden;
-  background-color: white;
-`;
-
-/**
- * Container used to create correctly format map previews.
- * Wrap the map in this container.
- */
-export const MapShareWrapper = styled(Box)`
-  margin: auto;
-  width: 515px;
-  transform: scale(2);
-  transform-origin: top center;
 `;
