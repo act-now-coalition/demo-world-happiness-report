@@ -18,7 +18,7 @@ import {
 } from "components/Containers";
 import LocationOverview from "components/LocationOverview";
 import { PageMetaTags } from "components/SocialMetaTags";
-import { Page } from "src/cms";
+import { Page, cms } from "src/cms";
 import { Microcopy } from "src/cms/models/Microcopy";
 import { ALL_METRICS, MetricId } from "src/utils/metrics";
 import { regions } from "src/utils/regions";
@@ -32,11 +32,11 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
   return (
     <>
       <PageMetaTags
-        siteName="Act Now Location Page"
-        url={`/us/${region.shortName}`}
+        siteName={`${cms.settings.siteName}`}
+        url={`${cms.settings.siteUrl}${regions.getRegionUrl(region)}`}
         title={`${region.shortName} - World Happiness Report`}
         description={metaTags.description}
-        socialImg={metaTags.socialImg}
+        socialImg={`${metaTags.socialImg}?regionId=${region.regionId}`}
         socialImgWidth={metaTags.socialImgWidth}
         socialImgHeight={metaTags.socialImgHeight}
       />

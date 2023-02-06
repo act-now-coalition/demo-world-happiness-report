@@ -27,7 +27,9 @@
       "metaTags": {
         "title": "Location page title",
         "description": "Location page description",
-        "socialImg": "https://picsum.photos/200/300"
+        "socialImg": "https://share-dev.actnowcoalition.org/screenshot?url=https://demo-world-happiness-report.vercel.app/internal/share-image/location",
+        "socialImgWidth": 1200,
+        "socialImgHeight": 630
       }
     },
     {
