@@ -22,6 +22,7 @@ import { Page, cms } from "src/cms";
 import { Microcopy } from "src/cms/models/Microcopy";
 import { ALL_METRICS, MetricId } from "src/utils/metrics";
 import { regions } from "src/utils/regions";
+import { getRegionUrl } from "src/utils/routing";
 
 export const Location: React.FC<{ region: Region; page: Page }> = ({
   region,
@@ -33,7 +34,7 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
     <>
       <PageMetaTags
         siteName={`${cms.settings.siteName}`}
-        url={`${cms.settings.siteUrl}${regions.getRegionUrl(region)}`}
+        url={getRegionUrl(region)}
         title={`${region.shortName} - World Happiness Report`}
         description={metaTags.description}
         socialImg={`${metaTags.socialImg}?regionId=${region.regionId}`}

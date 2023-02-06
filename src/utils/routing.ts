@@ -1,5 +1,7 @@
 import type { Region } from "@actnowcoalition/actnow.js";
 
+import { cms } from "src/cms";
+
 /**
  * The URL prefix for all location pages. This must match the directory used for
  * your location pages under src/pages.
@@ -31,4 +33,13 @@ export function getRegionSlug(region: Region): string {
  */
 export function getRegionRelativeUrl(region: Region): string {
   return `/${LOCATION_PAGE_PREFIX}/${getRegionSlug(region)}`;
+}
+
+/**
+ * Returns the full URL for a region.
+ * @param region
+ * @returns The full region URL.
+ */
+export function getRegionUrl(region: Region): string {
+  return `${cms.settings.siteUrl}/${getRegionRelativeUrl(region)}`;
 }
