@@ -86,16 +86,4 @@ export const ScreenshotWrapper = styled(Box)`
   width: 1200px;
   height: 630px;
   overflow: hidden;
-  background-color: white;
-`;
-
-/**
- * Container used to create correctly format map previews.
- * Wrap the map in this container.
- */
-export const MapShareWrapper = styled(Box)`
-  margin: auto;
-  width: 515px;
-  transform: scale(2);
-  transform-origin: top center;
 `;
