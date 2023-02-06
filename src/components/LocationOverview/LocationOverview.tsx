@@ -1,4 +1,12 @@
-import { Box, Divider, Grid, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Divider,
+  Grid,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 
 import {
   MetricScoreOverview,
@@ -6,7 +14,7 @@ import {
   Region,
 } from "@actnowcoalition/actnow.js";
 
-import { MetricId, metrics } from "src/utils/metrics";
+import { MetricId, subMetrics } from "src/utils/metrics";
 
 export interface LocationOverviewProps {
   region: Region;
@@ -14,33 +22,28 @@ export interface LocationOverviewProps {
 
 const LocationOverview = ({ region }: LocationOverviewProps) => {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
-    <Box display="flex" flexDirection={{ xs: "column", sm: "row" }}>
+    <Stack
+      direction={isMobile ? "column" : "row"}
+      spacing={4}
+      justifyContent="space-between"
+    >
       <Box flex={1}>
         <MetricScoreOverview region={region} metric={MetricId.HAPPINESS} />
         <Box mt={4}>
           <Typography variant="paragraphLarge">
-            <ul>
-              <li>
-                See recommendations to improve happiness through social support
-                and more
-              </li>
-              <li>
-                See recommendations to improve happiness through social support
-                and more
-              </li>
-            </ul>
+            [PLACEHOLDER] See recommendations to improve happiness through
+            social support and more
           </Typography>
         </Box>
       </Box>
-      <Divider
-        variant="middle"
-        sx={{
-          borderWidth: "1px",
-          marginX: { xs: 0, sm: theme.spacing(8) },
-          marginY: { xs: theme.spacing(3), sm: 0 },
-        }}
-      />
+      <Box flex="0 0">
+        <Divider
+          orientation={isMobile ? "horizontal" : "vertical"}
+          variant={isMobile ? undefined : "middle"}
+        />
+      </Box>
       <Box flex={1}>
         <Box mb={3}>
           <Typography variant="paragraphSmall">
@@ -48,7 +51,7 @@ const LocationOverview = ({ region }: LocationOverviewProps) => {
           </Typography>
         </Box>
         <Box>
-          {metrics.map((metric) => (
+          {subMetrics.map((metric) => (
             <Grid key={metric.id} container marginBottom={1}>
               <Grid item xs={8}>
                 <Typography variant="paragraphLarge">{metric.name}</Typography>
@@ -64,7 +67,7 @@ const LocationOverview = ({ region }: LocationOverviewProps) => {
           ))}
         </Box>
       </Box>
-    </Box>
+    </Stack>
   );
 };
 

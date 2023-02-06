@@ -148,6 +148,10 @@ export const metrics: MetricDefinition[] = [
   },
 ];
 
+export const subMetrics = metrics.filter(
+  (metric) => metric.id !== MetricId.HAPPINESS
+);
+
 export const ALL_METRICS = metrics.map((m) => m.id);
 
 export const categorySets = [
