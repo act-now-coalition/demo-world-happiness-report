@@ -1,5 +1,4 @@
-import PeopleIcon from "@mui/icons-material/People";
-import { Box, Button, Paper, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Paper, Stack, Typography, useTheme } from "@mui/material";
 
 import {
   AutoWidth,
@@ -62,15 +61,11 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
               justifyContent={{ sm: "flex-end" }}
               alignItems="center"
             >
-              <Button
+              <ShareButton
                 variant="outlined"
-                color="secondary"
-                size="large"
-                endIcon={<PeopleIcon />}
-                sx={{ color: theme.palette.common.white }}
-              >
-                Share
-              </Button>
+                url={getRegionUrl(region)}
+                quote={microcopy.get("share.quote")}
+              />
             </Box>
           </Stack>
         </PageSection>
@@ -96,7 +91,7 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
                   metrics={ALL_METRICS}
                 />
               </Paper>
-              <ShareBlock microcopy={microcopy} />
+              <ShareBlock microcopy={microcopy} region={region} />
             </Stack>
             {/* Overall Score Chart */}
             <Stack spacing={3}>
@@ -113,7 +108,7 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
                 Life evaluations (answers to the Cantril ladder question) for{" "}
                 {region.shortName}.
               </Typography>
-              <ShareBlock microcopy={microcopy} />
+              <ShareBlock microcopy={microcopy} region={region} />
             </Stack>
             {/* Explore Chart */}
             <Stack spacing={2}>
@@ -133,7 +128,7 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
                   width={0}
                 />
               </AutoWidth>
-              <ShareBlock microcopy={microcopy} />
+              <ShareBlock microcopy={microcopy} region={region} />
             </Stack>
           </Stack>
         </PageSection>
@@ -142,7 +137,13 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
   );
 };
 
-const ShareBlock = ({ microcopy }: { microcopy: Microcopy }) => (
+const ShareBlock = ({
+  microcopy,
+  region,
+}: {
+  microcopy: Microcopy;
+  region: Region;
+}) => (
   <Stack
     alignItems="center"
     justifyContent="space-between"
@@ -158,7 +159,7 @@ const ShareBlock = ({ microcopy }: { microcopy: Microcopy }) => (
       </InfoTooltip>
     </Box>
     <ShareButton
-      url={microcopy.get("share.url")}
+      url={getRegionUrl(region)}
       quote={microcopy.get("share.quote")}
     />
   </Stack>
