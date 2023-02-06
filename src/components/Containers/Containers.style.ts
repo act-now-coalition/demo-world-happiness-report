@@ -76,10 +76,6 @@ export const Placeholder = styled(Box)`
   }
 `;
 
-const screenshotWidth = 900;
-const screenshotAspectRatio = 16 / 9;
-const screenshotHeight = screenshotWidth / screenshotAspectRatio;
-
 /**
  * Container used to create correct dimensions for preview images.
  * Wrap the entirety of the share page content in this container and
@@ -87,8 +83,7 @@ const screenshotHeight = screenshotWidth / screenshotAspectRatio;
  */
 export const ScreenshotWrapper = styled(Box)`
   margin: 100px auto;
-  width: ${screenshotWidth}px;
-  height: ${screenshotHeight}px;
-  aspect-ratio: ${screenshotAspectRatio};
+  width: 1200px;
+  height: 630px;
   overflow: hidden;
 `;
