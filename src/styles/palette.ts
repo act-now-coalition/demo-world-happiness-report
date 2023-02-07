@@ -7,6 +7,9 @@ const palette: PaletteOptions = {
   secondary: {
     main: "#F2F3F440",
   },
+  action: {
+    disabledBackground: "#00000042",
+  },
 };
 
 export default palette;
