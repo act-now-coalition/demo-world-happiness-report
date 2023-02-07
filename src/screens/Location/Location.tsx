@@ -36,7 +36,10 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
         url={getRegionUrl(region)}
         title={`${region.shortName} - World Happiness Report`}
         description={metaTags.description}
-        socialImg={`${metaTags.socialImg}?regionId=${region.regionId}`}
+        socialImg={`${metaTags.socialImg?.replace(
+          "[[regionId]]",
+          region.regionId
+        )}`}
         socialImgWidth={metaTags.socialImgWidth}
         socialImgHeight={metaTags.socialImgHeight}
       />
