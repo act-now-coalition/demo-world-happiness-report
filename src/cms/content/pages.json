@@ -21,13 +21,15 @@
         },
         {
           "microcopyId": "share.url",
-          "microcopyContent": "https://demo-world-happiness-report.vercel.app/"
+          "microcopyContent": "https://demo-world-happiness-report.vercel.app"
         }
       ],
       "metaTags": {
         "title": "Location page title",
         "description": "Location page description",
-        "socialImg": "https://picsum.photos/200/300"
+        "socialImg": "https://share.actnowcoalition.org/screenshot?url=https://demo-world-happiness-report.vercel.app/internal/share-image/location?regionId=[[region_id]]",
+        "socialImgWidth": "1200",
+        "socialImgHeight": "630"
       }
     },
     {
@@ -51,7 +53,7 @@
         },
         {
           "microcopyId": "share.url",
-          "microcopyContent": "https://demo-world-happiness-report.vercel.app/"
+          "microcopyContent": "https://demo-world-happiness-report.vercel.app"
         },
         {
           "microcopyId": "data.source.tooltip",
@@ -65,7 +67,9 @@
       "metaTags": {
         "title": "World Happiness Report 2022",
         "description": "This year marks the 10th anniversary of the World Happiness Report, which uses global survey data to report how people evaluate their own lives in more than 150 countries worldwide.",
-        "socialImg": "https://picsum.photos/200/300"
+        "socialImg": "https://share.actnowcoalition.org/screenshot?url=https://demo-world-happiness-report.vercel.app/internal/share-image/homepage",
+        "socialImgWidth": "1200",
+        "socialImgHeight": "630"
       }
     }
   ]
