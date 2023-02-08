@@ -1,4 +1,5 @@
-import { Box, Paper, Stack, Typography, useTheme } from "@mui/material";
+import { People } from "@mui/icons-material";
+import { Box, Button, Paper, Stack, Typography, useTheme } from "@mui/material";
 
 import {
   AutoWidth,
@@ -19,6 +20,7 @@ import LocationOverview from "components/LocationOverview";
 import { PageMetaTags } from "components/SocialMetaTags";
 import { Page, cms } from "src/cms";
 import { Microcopy } from "src/cms/models/Microcopy";
+import { styled } from "src/styles";
 import { ALL_METRICS, MetricId } from "src/utils/metrics";
 import { regions } from "src/utils/regions";
 import { getRegionUrl } from "src/utils/routing";
@@ -65,9 +67,13 @@ export const Location: React.FC<{ region: Region; page: Page }> = ({
               alignItems="center"
             >
               <ShareButton
-                variant="outlined"
                 url={getRegionUrl(region)}
                 quote={microcopy.get("share.quote")}
+                anchorButton={
+                  <HeaderShareButton variant="outlined" endIcon={<People />}>
+                    Share
+                  </HeaderShareButton>
+                }
               />
             </Box>
           </Stack>
@@ -164,6 +170,19 @@ const ShareBlock = ({
     <ShareButton
       url={getRegionUrl(region)}
       quote={microcopy.get("share.quote")}
+      anchorButton={
+        <Button variant="outlined" endIcon={<People />}>
+          Share
+        </Button>
+      }
     />
   </Stack>
 );
+
+const HeaderShareButton = styled(Button)`
+  color: ${({ theme }) => theme.palette.common.white};
+  border-color: ${({ theme }) => theme.palette.common.white};
+  &:hover {
+    border-color: ${({ theme }) => theme.palette.common.white};
+  }
+`;
