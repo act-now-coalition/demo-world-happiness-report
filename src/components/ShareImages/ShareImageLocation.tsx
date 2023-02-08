@@ -16,7 +16,7 @@ export const ShareImageLocation = ({ region }: { region: Region }) => (
       </Typography>
       <Box
         sx={{
-          width: 700,
+          width: 1000,
           backgroundColor: (theme) => theme.palette.common.white,
           borderRadius: 2,
         }}
