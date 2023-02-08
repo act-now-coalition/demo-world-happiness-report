@@ -39,8 +39,8 @@ export const metrics: MetricDefinition[] = [
       providerId: "world-happiness",
       column: "Life Ladder",
     },
-    categoryThresholds: [5, 7],
-    categorySetId: "happiness-levels",
+    categoryThresholds: [4.595436668, 5.434532356, 6.100668049, 6.553915501],
+    categorySetId: "happiness-levels-5",
     formatOptions: {
       minimumFractionDigits: 1,
       maximumFractionDigits: 1,
@@ -160,6 +160,29 @@ export const categorySets = [
     categories: [
       { id: "low", name: "Low", color: theme.palette.severity[500] },
       { id: "medium", name: "Medium", color: theme.palette.severity[300] },
+      { id: "high", name: "High", color: theme.palette.severity[100] },
+    ],
+    defaultCategory: {
+      color: "grey",
+      id: "unknown",
+      name: "Unknown",
+    },
+  },
+  {
+    id: "happiness-levels-5",
+    categories: [
+      { id: "low", name: "Low", color: theme.palette.severity[500] },
+      {
+        id: "medium-low",
+        name: "Medium Low",
+        color: theme.palette.severity[400],
+      },
+      { id: "medium", name: "Medium", color: theme.palette.severity[300] },
+      {
+        id: "medium-high",
+        name: "Medium High",
+        color: theme.palette.severity[200],
+      },
       { id: "high", name: "High", color: theme.palette.severity[100] },
     ],
     defaultCategory: {
