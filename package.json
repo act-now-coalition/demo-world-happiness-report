@@ -25,7 +25,7 @@
     "*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
-    "@actnowcoalition/actnow.js": "^0.0.2",
+    "@actnowcoalition/actnow.js": "^0.2.0",
     "@emotion/react": "^11.9.3",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.9.3",

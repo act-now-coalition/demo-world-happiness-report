@@ -1,6 +1,7 @@
 import React from "react";
 
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
+import People from "@mui/icons-material/People";
 import {
   Box,
   Button,
@@ -153,6 +154,11 @@ const ShareBlock = ({ microcopy }: { microcopy: Microcopy }) => (
     <ShareButton
       url={microcopy.get("share.url")}
       quote={microcopy.get("share.quote")}
+      anchorButton={
+        <Button variant="outlined" endIcon={<People />}>
+          Share
+        </Button>
+      }
     />
   </Stack>
 );
